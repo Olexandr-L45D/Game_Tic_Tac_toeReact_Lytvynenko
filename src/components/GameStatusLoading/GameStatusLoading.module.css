@@ -25,8 +25,8 @@
 .iconLeft {
   width: 50px;
   height: 50px;
-  margin-left: 36px;
-  margin-right: 115px;
+  margin-left: 50px;
+  margin-right: 100px;
   background: url("/src/assets/emages/BackToButton.png") center/cover no-repeat;
 }
 
@@ -52,8 +52,8 @@
   width: 90px;
   height: 90px;
   margin-top: 0px;
-  margin-right: 36px;
-  margin-left: 105px;
+  margin-right: 60px;
+  margin-left: 80px;
   background: url("/src/assets/emages/Icon_Quascion.png") center/cover no-repeat;
   border: none;
   border-radius: 50px;

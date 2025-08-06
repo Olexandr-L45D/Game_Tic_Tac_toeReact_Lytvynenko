@@ -5,8 +5,45 @@
   justify-content: center;
   gap: 0;
   position: relative; /* Щоб працювали зсуви/зайди */
-  margin-top: 94px;
+  margin-top: 84px;
+  margin-bottom: 30px;
 }
+@media (max-width: 768px) {
+  .wrapper {
+    margin-top: 20px; /* або 0px, якщо треба щільно */
+    margin-bottom: 35px; /* як ти просив */
+  }
+
+  .playerLeftBlokLeft,
+  .playerRight {
+    height: 200px; /* за потреби можна зменшити */
+  }
+
+  .gridWrapper {
+    width: 220px;
+    height: 220px;
+  }
+
+  .grid {
+    grid-template-columns: repeat(3, 50px);
+    grid-template-rows: repeat(3, 50px);
+    column-gap: 10px;
+    row-gap: 10px;
+  }
+
+  .cell {
+    width: 50px;
+    height: 50px;
+  }
+
+  .icon,
+  .icon-img,
+  .cell svg {
+    width: 50px;
+    height: 50px;
+  }
+}
+
 .playerLeftBlokLeft {
   position: relative;
   width: 89px;
@@ -17,15 +54,13 @@
   background: url("/src/assets/emages/Bacground89256.png") center/cover
     no-repeat;
   justify-content: flex-end;
+  /* margin-bottom: 30px; */
 }
 .playerLeft {
   position: relative;
-  /* width: 60px;
-  height: 60px; */
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* background: url("/src/assets/emages/Bacground89256.png") center/cover no-repeat; */
   justify-content: flex-end;
 }
 
@@ -91,7 +126,6 @@
   object-fit: contain;
   display: block;
   margin: 5px;
-  /* margin: 0 auto; */
 }
 .cell {
   width: 60px;
@@ -109,7 +143,7 @@
   color: #fff;
 }
 
-/* При натисканні – не показувати ніякого фону */
+/* При натисканні  не показувати ніякого фону */
 .cell:focus,
 .cell:active {
   outline: none;
@@ -117,7 +151,7 @@
   box-shadow: none;
 }
 
-/* Іконки всередині клітинок – збільшити */
+/* Іконки всередині клітинок  збільшити */
 .cell svg {
   width: 60px;
   height: 60px;

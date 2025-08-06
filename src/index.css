@@ -6,7 +6,6 @@
   /* color-scheme: light dark; */
   color: rgba(255, 255, 255, 0.87);
 
-
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -23,12 +22,18 @@ a:hover {
   color: #ffffff;
 }
 
-body {
+body,
+html {
   margin: 0;
-  display: flex;
-  place-items: center;
-  /* width: 100%; */
+  padding: 0;
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #f0f0f0; /* для кольору фону */
+}
+html,
+body {
+  overflow-y: auto;
 }
 
 h1 {
