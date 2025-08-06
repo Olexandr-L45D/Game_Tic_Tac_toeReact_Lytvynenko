@@ -48,7 +48,7 @@ const TicTacToeGame = ({ settings, onEvent }) => {
           setShowLoading(false);
           // тепер тільки встановлюємо winner
           setWinner("X");
-        }, 2000); // можеш змінити тривалість
+        }, 1500); // можеш змінити тривалість
       } else {
         setTimeout(() => {
           navigate("/result", {
@@ -58,7 +58,7 @@ const TicTacToeGame = ({ settings, onEvent }) => {
               player2: "Enemy",
             },
           });
-        }, 2000);
+        }, 1500);
       }
     }
   };
@@ -144,11 +144,8 @@ const TicTacToeGame = ({ settings, onEvent }) => {
           </div>
         </section>
 
-        <div className={css.statusWrapper}></div>
-
-        {/*  Показ фінального модального вікна при перемозі */}
         {winner === "X" && <WinModal onRestart={handleRestartGame} />}
-        {/*  Показ модального екрана при завершенні гри */}
+
         {showLoading && <WinModalMidle onRestart={() => {}} />}
       </section>
 
