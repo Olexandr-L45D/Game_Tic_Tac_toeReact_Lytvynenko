@@ -1,0 +1,66 @@
+/* style */
+.container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 852px;
+  height: 393px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: url("/src/assets/emages/Frame_baground_start.png.png")
+    center/cover no-repeat;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.gameStart {
+  width: 100px;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%; /* кругла форма */
+  transform: translateY(40px); /* зміщення вниз */
+  /* background: url("/src/assets/emages/btnStart.png"); */
+}
+.theme_default {
+  background-image: url("/assets/themes/default/background.jpg");
+  background-size: cover;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  justify-content: center;
+}
+
+.cartTitle {
+  width: 217px;
+  height: 48px;
+  padding: 2px;
+  margin: 2px;
+  color: white;
+  font-size: 2em;
+  font-weight: 900;
+  line-height: 2;
+}
+
+.cartText {
+  padding: 2px;
+  margin: 2px;
+  color: black;
+  font-size: 1em;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.cartIcon {
+  width: 80px;
+  height: 80px;
+  margin: 5px;
+  margin-bottom: 0px;
+  padding: 0px;
+}

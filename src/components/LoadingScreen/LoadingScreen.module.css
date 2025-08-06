@@ -1,0 +1,40 @@
+/* LoadingScreen.module.css */
+
+.loadingWrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 852px;
+  height: 393px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background: url("/src/assets/emages/BacgrBlue.png") center/cover no-repeat,
+    url("/src/assets/emages/LoaderText.png") center/cover;
+
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.loadingWrapper::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url("/src/assets/emages/BacgrBlueLoading.png") center/cover
+    no-repeat;
+  mix-blend-mode: screen;
+  opacity: 1;
+  pointer-events: none;
+  z-index: 0;
+}
+
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}

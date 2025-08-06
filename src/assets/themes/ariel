@@ -1,0 +1,5 @@
+.ariel {
+  background-image: url("/assets/themes/ariel/background.jpg");
+  background-color: #a6e7f3; /* запасний колір */
+  color: #003366;
+}

@@ -1,0 +1,29 @@
+/* SettingPage  it is have three background layers */
+.container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 852px;
+  height: 395px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: url("/src/assets/emages/MaskDark.png") center/cover no-repeat,
+    url("/src/assets/emages/MaskMountains.png") center/cover no-repeat;
+  box-sizing: border-box;
+}
+.container::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url("/src/assets/emages/MaskStars.png") center/cover no-repeat;
+  mix-blend-mode: screen; /* Або lighten */
+  opacity: 1;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* brightness(1.8) — збільшує яскравість зірочок.
+contrast(1.2) — покращує чіткість і видимість дрібних зірок.
+drop-shadow(...) — додає ефект світіння навколо кожної зірочки (імітація розсіювання).
+mix-blend-mode: screen — дозволяє "просвічуванню" з фоном, роблячи ефект м’яким. */

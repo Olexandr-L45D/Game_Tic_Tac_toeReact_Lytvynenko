@@ -1,0 +1,60 @@
+.statusWrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  margin-top: 12px;
+  padding: 6px 12px;
+  color: white;
+  display: flex;
+  align-items: center;
+  border-radius: 8px;
+  z-index: 10;
+  font-weight: bold;
+}
+
+.containerLoad {
+  width: 852px;
+  height: 60px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+}
+.iconLeft {
+  width: 50px;
+  height: 50px;
+  margin-left: 36px;
+  margin-right: 115px;
+  background: url("/src/assets/emages/BackToButton.png") center/cover no-repeat;
+}
+
+.centrLoad {
+  width: 420px;
+  height: 28px;
+  display: flex;
+  flex-direction: row;
+}
+.iconLoad {
+  width: 420px;
+  height: 28px;
+  margin-top: 0px;
+  margin-bottom: 35px;
+  background: url("/src/assets/emages/GroupLoading.png") center/cover no-repeat;
+}
+
+.text {
+  font-size: 14px;
+}
+.iconRight {
+  padding: 0px;
+  width: 90px;
+  height: 90px;
+  margin-top: 0px;
+  margin-right: 36px;
+  margin-left: 105px;
+  background: url("/src/assets/emages/Icon_Quascion.png") center/cover no-repeat;
+  border: none;
+  border-radius: 50px;
+}

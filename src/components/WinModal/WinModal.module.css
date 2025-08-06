@@ -1,0 +1,43 @@
+/* WinModal.module.css */
+
+.container {
+  position: fixed;
+  top: 10px;
+  left: 0;
+  width: 852px;
+  height: 400px;
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: url("/src/assets/emages/FonBacgCogratMidle.png") center/cover
+    no-repeat;
+}
+
+.win-modal__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.button {
+  margin-top: 180px;
+  padding: 15px 26px;
+  width: 160px;
+  height: 56px;
+  opacity: 1;
+  top: 274px;
+  left: 335px;
+  border-radius: 28px;
+  gap: 6px;
+  border-width: 1px;
+  padding: 16px;
+  background: url("/src/assets/emages/Subtitles.png") center/cover no-repeat;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  background-color: transparent;
+  border: none;
+}
+
+.button:hover {
+  text-decoration: underline; /* або легкий ефект, без фону */
+}

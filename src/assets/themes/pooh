@@ -1,0 +1,5 @@
+.pooh {
+  background-image: url("/assets/themes/pooh/background.jpg");
+  background-color: #fef3c0; /* запасний колір */
+  color: #5c4300;
+}
