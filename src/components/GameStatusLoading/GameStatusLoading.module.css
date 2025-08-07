@@ -27,19 +27,19 @@
 .iconLeft {
   width: 50px;
   height: 50px;
-  margin-left: 60px;
-  margin-right: 70px;
+  margin-left: 40px;
+  margin-right: 60px;
   background: url("/src/assets/emages/BackToButton.png") center/cover no-repeat;
 }
 
 .centrLoad {
-  width: 420px;
+  width: 421px;
   height: 28px;
   display: flex;
   flex-direction: row;
 }
 .iconLoad {
-  width: 420px;
+  width: 421px;
   height: 28px;
   margin-top: 0px;
   margin-bottom: 35px;
@@ -54,8 +54,8 @@
   width: 90px;
   height: 90px;
   margin-top: 0px;
-  margin-right: 70px;
-  margin-left: 60px;
+  margin-right: 50px;
+  margin-left: 50px;
   background: url("/src/assets/emages/Icon_Quascion.png") center/cover no-repeat;
   border: none;
   border-radius: 50px;

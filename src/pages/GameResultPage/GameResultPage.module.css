@@ -2,8 +2,8 @@
   position: fixed;
   top: 0;
   left: 0;
-  width: 850px;
-  height: 390px;
+  width: 840px;
+  height: 380px;
   background: url("/src/assets/emages/BacgrBlue.png") center/cover no-repeat;
   display: flex;
   justify-content: center;

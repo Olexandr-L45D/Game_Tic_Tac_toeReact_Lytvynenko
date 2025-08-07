@@ -1,4 +1,3 @@
-// //TicTacToeGame
 import { useEffect, useState } from "react";
 import { FcBusinesswoman } from "react-icons/fc";
 import css from "./TicTacToeGame.module.css";
