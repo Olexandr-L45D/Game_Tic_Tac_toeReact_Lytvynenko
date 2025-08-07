@@ -2,7 +2,7 @@
 
 .container {
   position: fixed;
-  top: 10px;
+  top: 5px;
   left: 0;
   width: 840px;
   height: 380px;
@@ -12,6 +12,7 @@
   align-items: center;
   background: url("/src/assets/emages/FonBacgCogratMidle.png") center/cover
     no-repeat;
+  margin-left: -20px;
 }
 
 .win-modal__content {

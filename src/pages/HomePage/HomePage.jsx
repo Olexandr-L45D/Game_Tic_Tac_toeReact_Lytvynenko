@@ -1,12 +1,23 @@
-import { NavLink } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import css from "./HomePage.module.css";
+import startSound from "/src/assets/audio/startGame.mp3.wav";
 
 export default function HomePage() {
+  const navigate = useNavigate();
+
+  const handleGameStart = () => {
+    const audio = new Audio(startSound);
+    audio.play().catch(e => console.warn("Autoplay blocked:", e));
+
+    alert("Have a nice game!");
+    navigate("/gamesetting");
+  };
+
   return (
-    <div className={css.container}>
+    <section className={css.container}>
       <div className={css.card}>
-        <NavLink to="/gamesetting" className={css.gameStart}></NavLink>
+        <div onClick={handleGameStart} className={css.gameStart}></div>
       </div>
-    </div>
+    </section>
   );
 }

@@ -1,12 +1,32 @@
 import { useState } from "react";
 import css from "./GameSettingsModal.module.css";
-import { NavLink } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import startSound from "/src/assets/audio/startGame.mp3.wav";
+import endSound from "/src/assets/audio/endSong.mp3.wav";
 
 const GameSettingsModal = ({ onClose, onStart }) => {
   const [theme, setTheme] = useState("rose");
   const [age, setAge] = useState(5);
   const [language, setLanguage] = useState("uk");
-  // const [isComputer, setIsComputer] = useState(true);
+  const navigate = useNavigate();
+
+  const handleStart = () => {
+    const audio = new Audio(startSound);
+    audio.play().catch(e => console.warn("Autoplay blocked:", e));
+    alert("Have a nice game!");
+  };
+
+  const handleGameEnd = () => {
+    const audio = new Audio(endSound);
+    audio.play().catch(e => console.warn("Autoplay blocked:", e));
+
+    const confirmed = window.confirm(
+      "Do you want to go back to the beginning of the game?"
+    );
+    if (confirmed) {
+      navigate("/");
+    }
+  };
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -55,10 +75,12 @@ const GameSettingsModal = ({ onClose, onStart }) => {
             </label>
 
             <div className={css.buttons}>
-              <button type="submit">Start</button>
-              <NavLink className={css.buttonEnd} to="/">
+              <button onClick={handleStart} type="submit">
+                Start
+              </button>
+              <button onClick={handleGameEnd} className={css.buttonEnd}>
                 End
-              </NavLink>
+              </button>
             </div>
           </form>
         </div>

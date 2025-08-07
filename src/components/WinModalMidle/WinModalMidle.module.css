@@ -2,7 +2,7 @@
 
 .loadingWrapper {
   position: fixed;
-  top: 10px;
+  top: 5px;
   left: 0;
   width: 840px;
   height: 380px;
@@ -13,6 +13,7 @@
   background: url("/src/assets/emages/FonImageSelebr.png") center/cover
     no-repeat;
   box-sizing: border-box;
+  margin-left: -10px;
 }
 
 @keyframes blink {

@@ -57,6 +57,9 @@
     no-repeat;
   justify-content: flex-end;
   /* margin-bottom: 30px; */
+  background: url("/src/assets/audio/allclicks.mp3.wav") center/cover no-repeat,
+    url("/src/assets/audio/startGame.mp3.wav") center/cover no-repeat,
+    url("/src/assets/audio/finalliVin.mp3.wav") center/cover no-repeat;
 }
 .playerLeft {
   position: relative;

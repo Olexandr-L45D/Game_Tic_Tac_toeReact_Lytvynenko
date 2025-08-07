@@ -22,10 +22,14 @@
   align-items: center;
   border-radius: 50%; /* кругла форма */
   transform: translateY(40px); /* зміщення вниз */
-  /* background: url("/src/assets/emages/btnStart.png"); */
+  /* background: url("/src/assets/emages/endSong.mp3"); */
 }
 .theme_default {
-  background-image: url("/assets/themes/default/background.jpg");
+  background-image: url("/src/assets/audio/finalliVin.mp3.wav"),
+    url("/src/assets/audio/mixKids.mp3.wav"),
+    url("/src/assets/audio/successMixkit.mp3.wav"),
+    url("/src/assets/audio/endSong.mp3.wav"),
+    url("/src/assets/audio/clikcs.mp3.wav");
   background-size: cover;
 }
 

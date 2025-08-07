@@ -7,7 +7,11 @@ import { WinModal } from "../WinModal/WinModal";
 import { useNavigate } from "react-router-dom";
 import { WinModalMidle } from "../WinModalMidle/WinModalMidle";
 
-// Об'єкт для іконок та зображень
+import startSound from "/src/assets/audio/startGame.mp3.wav";
+import clickSound from "/src/assets/audio/allclicks.mp3.wav";
+// import successSound from "../assets/audio/success-mixkit.mp3";
+import winSound from "/src/assets/audio/finalliVin.mp3.wav";
+
 const iconComponents = {
   rose: {
     x: Rose,
@@ -27,12 +31,31 @@ const TicTacToeGame = ({ settings, onEvent }) => {
   const [animateIntro, setAnimateIntro] = useState(true);
   const [showLoading, setShowLoading] = useState(false);
 
+  // const successAudio = new Audio(successSound);
+  // successAudio.play();
+
+  useEffect(() => {
+    const startAudio = new Audio(startSound);
+    // Відтворення звуку після першого кліку користувача на кнопку початку гри на HomePage
+    const handleUserInteraction = () => {
+      startAudio.play().catch(e => console.warn("Autoplay blocked:", e));
+      window.removeEventListener("click", handleUserInteraction);
+    };
+    window.addEventListener("click", handleUserInteraction);
+    return () => {
+      window.removeEventListener("click", handleUserInteraction);
+    };
+  }, []);
+
   const handleClick = i => {
     if (board[i] || winner) return;
     const next = [...board];
     next[i] = current;
     const result = checkWin(next);
-
+    // ✅ Грає звук
+    const click = new Audio(clickSound);
+    click.currentTime = 0;
+    click.play().catch(e => console.warn("Click sound error:", e));
     setBoard(next);
     setWinner(result);
     onEvent?.({ type: "move", board: next, result, currentPlayer: current });
@@ -42,7 +65,10 @@ const TicTacToeGame = ({ settings, onEvent }) => {
     } else {
       if (result === "X") {
         setShowLoading(true);
-
+        // тепер озвучка при виграшу
+        const winAudio = new Audio(winSound);
+        winAudio.currentTime = 0;
+        winAudio.play().catch(e => console.warn("Win sound blocked:", e));
         setTimeout(() => {
           setShowLoading(false);
           // тепер тільки встановлюємо winner
