@@ -43,13 +43,15 @@ const GameSettingsModal = ({ onClose, onStart }) => {
           <h3 className={css.text}>language and age.</h3>
         </section>
         <div className={css.modalContent}>
-          <h2 className={css.titleSet}>Settings</h2>
+          {/* <h2 className={css.titleSet}>Settings</h2> */}
           <form onSubmit={handleSubmit}>
             <label>
               Hero:
               <select value={theme} onChange={e => setTheme(e.target.value)}>
                 <option value="rose">Learose</option>
                 <option value="princes">Princesse</option>
+                <option value="boy">Boy</option>
+                <option value="man">Man</option>
               </select>
             </label>
 
@@ -80,7 +82,7 @@ const GameSettingsModal = ({ onClose, onStart }) => {
                 Start
               </button>
               <button onClick={handleGameEnd} className={css.buttonEnd}>
-                End
+                Restart
               </button>
             </div>
           </form>

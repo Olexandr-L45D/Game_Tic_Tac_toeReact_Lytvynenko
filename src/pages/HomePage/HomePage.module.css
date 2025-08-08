@@ -24,13 +24,17 @@
   transform: translateY(40px); /* зміщення вниз */
   /* background: url("/src/assets/emages/endSong.mp3"); */
 }
-.theme_default {
+.theme_defaul {
   background-image: url("/src/assets/audio/finalliVin.mp3.wav"),
     url("/src/assets/audio/mixKids.mp3.wav"),
     url("/src/assets/audio/successMixkit.mp3.wav"),
     url("/src/assets/audio/endSong.mp3.wav"),
     url("/src/assets/audio/endSong.mp3.wav"),
-    url("/src/assets/audio/clikcs.mp3.wav");
+    url("/src/assets/audio/clikcs.mp3.wav"),
+    url("/src/assets/emages/BlueGirl.png"),
+    url("/src/assets/emages/starcPhon.png"),
+    url("/src/assets/emages/GroupFone3.png"),
+    url("/src/assets/emages/CircleBlueCircle.png");
   background-size: cover;
 }
 

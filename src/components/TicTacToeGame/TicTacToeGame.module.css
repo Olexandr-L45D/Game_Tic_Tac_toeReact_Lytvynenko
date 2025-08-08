@@ -34,15 +34,15 @@
   }
 
   .cell {
-    width: 50px;
-    height: 50px;
+    width: 60px;
+    height: 60px;
   }
 
   .icon,
   .icon-img,
   .cell svg {
-    width: 50px;
-    height: 50px;
+    width: 60px;
+    height: 60px;
   }
 }
 
@@ -179,7 +179,8 @@
 }
 
 .icon-img {
-  border-radius: 50%; /* залишаємо круглим */
+  border-radius: 50%;
+  border: 3px;
 }
 
 .header {

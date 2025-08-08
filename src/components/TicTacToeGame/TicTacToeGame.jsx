@@ -1,8 +1,12 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FcBusinesswoman } from "react-icons/fc";
+import { FcBusinessman } from "react-icons/fc";
+import { FcPortraitMode } from "react-icons/fc";
 import css from "./TicTacToeGame.module.css";
 import Rose from "/assets/images/RoseYellow.png";
 import Princesse from "/assets/images/Princasse.png";
+import PrincesBlue from "/src/assets/emages/BlueGirl.png";
+// import CircleBlue from "/src/assets/emages/CircleBlueCircle.png";
 import { WinModal } from "../WinModal/WinModal";
 import { useNavigate } from "react-router-dom";
 import { WinModalMidle } from "../WinModalMidle/WinModalMidle";
@@ -19,7 +23,15 @@ const iconComponents = {
     o: Princesse,
   },
   princes: {
-    x: Princesse,
+    x: PrincesBlue,
+    o: FcBusinesswoman,
+  },
+  boy: {
+    x: FcPortraitMode,
+    o: FcBusinesswoman,
+  },
+  man: {
+    x: FcBusinessman,
     o: FcBusinesswoman,
   },
 };
@@ -135,7 +147,7 @@ const TicTacToeGame = ({ settings, onEvent }) => {
     if (!icon) return symbol;
     if (typeof icon === "function") {
       const Icon = icon;
-      return <Icon size={60} />;
+      return <Icon size={70} />;
     }
     return <img src={icon} alt={symbol} style={{ width: 70, height: 70 }} />;
   };
@@ -143,15 +155,29 @@ const TicTacToeGame = ({ settings, onEvent }) => {
   return (
     <main className={css.wrapper}>
       <div className={css.playerLeftBlokLeft}>
+        {/* <HeroIntro
+          heroImage={iconComponents[settings.theme].x}
+          onFinish={() => console.log("Hero intro finished")}
+        /> */}
+
+        {animateIntro && (
+          <HeroIntro
+            hero={
+              typeof iconComponents[settings.theme].x === "string"
+                ? iconComponents[settings.theme].x
+                : React.createElement(iconComponents[settings.theme].x)
+            }
+            onFinish={() => console.log("Hero intro finished")}
+          />
+        )}
+
         <aside
           className={`${css.playerLeft} ${
             animateIntro ? `${css.glowingPlayer} ${css.playerIntro}` : ""
           }`}
         >
           {getIconComponent("x")}
-          {animateIntro && (
-            <HeroIntro onFinish={() => setAnimateIntro(false)} />
-          )}
+
           <span className={css.label}>You</span>
         </aside>
       </div>
@@ -187,3 +213,12 @@ const TicTacToeGame = ({ settings, onEvent }) => {
 };
 
 export default TicTacToeGame;
+
+// {
+//   animateIntro && (
+//     <HeroIntro
+//       heroImage={iconComponents[settings.theme].x}
+//       onFinish={() => console.log("Hero intro finished")}
+//     />
+//   );
+// }
