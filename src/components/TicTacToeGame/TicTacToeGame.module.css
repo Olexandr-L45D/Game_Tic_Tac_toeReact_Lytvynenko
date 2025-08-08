@@ -316,7 +316,7 @@
   font-size: 20px;
   color: #fff8b5;
   animation: twinkle 1.5s ease-in-out infinite;
-  z-index: 5;
+  z-index: 20;
 }
 
 /* 🧹 Видалено glow background позаду героя */
@@ -388,4 +388,46 @@
   100% {
     transform: translateY(-40px); /* Підіймаємо героя вгору */
   }
+}
+@keyframes heroMoveUpDown {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.animateHeroMove {
+  animation: heroMoveUpDown 1s ease-in-out;
+}
+.heroIconWrapper {
+  position: relative; /* щоб псевдоелементи працювали відносно героя */
+  display: inline-block;
+  z-index: 10; /* перекриває фон */
+}
+
+/* клас для анімації, тепер на цій обгортці */
+.glowingPlayer {
+  animation: glow 2s ease-in-out infinite;
+  position: relative;
+  z-index: 20;
+}
+
+.glowingPlayer::before {
+  content: "✨✨✨";
+  position: absolute;
+  top: -20px;
+  left: -5px;
+  font-size: 20px;
+  color: #fff8b5;
+  animation: twinkle 1.5s ease-in-out infinite;
+  z-index: 25;
+}
+
+.glowingPlayer::after {
+  display: none;
 }

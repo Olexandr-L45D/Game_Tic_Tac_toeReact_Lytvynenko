@@ -34,7 +34,9 @@
     url("/src/assets/emages/BlueGirl.png"),
     url("/src/assets/emages/starcPhon.png"),
     url("/src/assets/emages/GroupFone3.png"),
-    url("/src/assets/emages/CircleBlueCircle.png");
+    url("/src/assets/emages/starcPhon.png"),
+    url("/src/assets/audio/sunTuIX.mp3.wav"),
+    url("/src/assets/audio/sunTuNull.mp3.wav");
   background-size: cover;
 }
 
