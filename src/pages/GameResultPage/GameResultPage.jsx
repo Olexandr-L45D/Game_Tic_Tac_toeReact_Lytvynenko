@@ -29,21 +29,23 @@ const GameResultPage = () => {
 
   return (
     <section className={css.modalOverlay}>
-      <div style={{ padding: "40px", textAlign: "center" }}>
+      <div style={{ margin: "10px", padding: "30px", textAlign: "center" }}>
         <h1 className={css.title}>Game the end</h1>
         <p className={css.text}>
           {winner === "Draw"
             ? "🤝 Draw!"
             : winner === "X"
-            ? `🏆 Winner: ${player1}`
-            : `😞 Winner: ${player2}`}
+            ? `🏆 Winner : ${player1}`
+            : `😞 Winner : ${player2}`}
         </p>
 
         <div style={{ marginTop: "20px" }}>
           <button className={css.textBtn} onClick={handleStart}>
             🔁 Play again
           </button>
-          <button onClick={handleGameEnd}>🏠 To the beginning</button>
+          <button className={css.textBtn} onClick={handleGameEnd}>
+            🏠 To the beginning
+          </button>
         </div>
       </div>
     </section>

@@ -1,0 +1,108 @@
+.heroWrapper {
+  margin-top: 0px;
+  width: 110px;
+  height: 110px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: heroIntroMove 1.8s ease-out forwards;
+  background-image: url("/src/assets/emages/StarksHeroYour.png");
+}
+.heroTitle {
+  width: 64px;
+  height: 18px;
+  margin: auto;
+  padding: auto;
+  font-family: Fredoka;
+  font-weight: 600;
+  font-style: SemiBold;
+  font-size: 15px;
+  line-height: 1.1;
+  letter-spacing: 0%;
+  vertical-align: middle;
+}
+.heroImage {
+  width: 44px;
+  height: 44px;
+  opacity: 1;
+  top: 50px;
+  border-radius: 50px;
+  border-width: 6px;
+
+  z-index: 2;
+  animation: heroPulse 1.5s infinite ease-in-out;
+}
+
+/* Зірки навколо */
+.star {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: radial-gradient(circle, #fff8d6 0%, #ffd700 80%);
+  border-radius: 50%;
+  animation: starBlink 2s infinite ease-in-out;
+}
+
+.star:nth-child(1) {
+  top: -50px;
+  left: -10px;
+  animation-delay: 0.1s;
+}
+.star:nth-child(2) {
+  top: -40px;
+  left: 50px;
+  animation-delay: 0.2s;
+}
+.star:nth-child(3) {
+  top: -20px;
+  left: -40px;
+  animation-delay: 0.3s;
+}
+.star:nth-child(4) {
+  top: 40px;
+  left: -50px;
+  animation-delay: 0.4s;
+}
+.star:nth-child(5) {
+  top: 50px;
+  left: 50px;
+  animation-delay: 0.5s;
+}
+/* ... і так далі для різних позицій */
+
+/* Анімація з появи з 20px вище */
+@keyframes heroIntroMove {
+  from {
+    opacity: 0;
+    transform: translateY(-20px) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Пульсація героя */
+@keyframes heroPulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+/* Мерехтіння зірок */
+@keyframes starBlink {
+  0%,
+  100% {
+    opacity: 0.8;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.3;
+    transform: scale(0.8);
+  }
+}

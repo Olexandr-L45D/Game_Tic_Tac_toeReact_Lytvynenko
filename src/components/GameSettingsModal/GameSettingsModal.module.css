@@ -3,8 +3,8 @@
   position: fixed;
   top: 0;
   left: 0;
-  width: 850px;
-  height: 390px;
+  width: 820px;
+  height: 370px;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -18,17 +18,42 @@
   height: auto;
   display: flex;
   flex-direction: column;
+  margin-left: 10px;
 }
 .title {
   display: block;
   width: 100%;
   height: auto;
+  margin: 2 auto 16px auto;
+  font-family: Fredoka;
+  font-weight: 800;
+  font-size: 20px;
+  line-height: 1.4;
+  justify-content: start;
+  color: #ffffff;
+}
+.titleSet {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 2 auto 10px auto;
+  font-weight: 900;
+  font-size: 20px;
+  line-height: 1.2;
+  text-align: center;
+  justify-content: start;
+  color: black;
+}
+.text {
+  display: block;
+  width: 100%;
+  height: auto;
   margin: 0 auto 16px auto;
+  margin-left: 30px;
   font-family: Fredoka;
   font-weight: 600;
   font-size: 18px;
   line-height: 1.3;
-  /* text-align: center; */
   justify-content: start;
   color: #ffffff;
 }
@@ -60,20 +85,27 @@
 
 .modalContent {
   position: fixed;
-  top: 45px;
+  top: 20px;
   background: white;
   padding: 20px;
   padding-top: 0px;
-  border-radius: 12px;
-  max-width: 200px;
+  border-radius: 15px;
+  max-width: 220px;
   max-height: 80vh;
   overflow-y: auto;
   box-sizing: border-box;
+  background: url("/src/assets/emages/FonImageSelebr.png");
 }
 
 .modalContent label {
   display: block;
-  margin-top: 5px;
+  margin-top: 8px;
+  font-weight: 800;
+  font-size: 18px;
+  line-height: 1;
+  justify-content: start;
+  color: black;
+  padding: 3px;
 }
 
 .modalContent input,
@@ -97,13 +129,13 @@
   font-size: 1rem;
   border-radius: 8px;
   border: none;
-  background-color: #ffd28f;
+  background-color: #6b73df;
   cursor: pointer;
   transition: background-color 0.3s;
 }
 
 .buttons button:hover {
-  background-color: #ffc267;
+  background-color: #6b73df;
 }
 
 .buttonEnd {

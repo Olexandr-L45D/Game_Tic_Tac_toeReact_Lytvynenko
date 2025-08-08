@@ -9,8 +9,9 @@ import { WinModalMidle } from "../WinModalMidle/WinModalMidle";
 
 import startSound from "/src/assets/audio/startGame.mp3.wav";
 import clickSound from "/src/assets/audio/allclicks.mp3.wav";
-// import successSound from "../assets/audio/success-mixkit.mp3";
+// import successSound from "/src/assets/audio/success-mixkit.mp3";
 import winSound from "/src/assets/audio/finalliVin.mp3.wav";
+import HeroIntro from "../HeroIntro/HeroIntro";
 
 const iconComponents = {
   rose: {
@@ -73,17 +74,17 @@ const TicTacToeGame = ({ settings, onEvent }) => {
           setShowLoading(false);
           // тепер тільки встановлюємо winner
           setWinner("X");
-        }, 1500); // можеш змінити тривалість
+        }, 3000); // можеш змінити тривалість
       } else {
         setTimeout(() => {
           navigate("/result", {
             state: {
               winner: result,
               player1: "You",
-              player2: "Enemy",
+              player2: "Opponent",
             },
           });
-        }, 1500);
+        }, 3000);
       }
     }
   };
@@ -148,6 +149,9 @@ const TicTacToeGame = ({ settings, onEvent }) => {
           }`}
         >
           {getIconComponent("x")}
+          {animateIntro && (
+            <HeroIntro onFinish={() => setAnimateIntro(false)} />
+          )}
           <span className={css.label}>You</span>
         </aside>
       </div>

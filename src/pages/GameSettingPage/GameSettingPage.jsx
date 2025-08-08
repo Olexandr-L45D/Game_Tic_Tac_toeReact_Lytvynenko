@@ -28,7 +28,7 @@ const GameSettingPage = () => {
           setShowStatusLoading(true);
           setSettings(data);
           setStartGame(true);
-        }, 1000); // Пауза перед стартом гри
+        }, 1500); // Пауза перед стартом гри
       }, 1500); // Невелика затримка між лоадерами
     }, 1500); // Показ першого лоадера 1с
   };

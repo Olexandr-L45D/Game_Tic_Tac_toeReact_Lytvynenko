@@ -3,8 +3,8 @@
   position: fixed;
   top: 0;
   left: 0;
-  width: 840px;
-  height: 380px;
+  width: 820px;
+  height: 370px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -28,6 +28,7 @@
   background-image: url("/src/assets/audio/finalliVin.mp3.wav"),
     url("/src/assets/audio/mixKids.mp3.wav"),
     url("/src/assets/audio/successMixkit.mp3.wav"),
+    url("/src/assets/audio/endSong.mp3.wav"),
     url("/src/assets/audio/endSong.mp3.wav"),
     url("/src/assets/audio/clikcs.mp3.wav");
   background-size: cover;
