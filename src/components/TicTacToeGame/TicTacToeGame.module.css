@@ -431,3 +431,41 @@
 .glowingPlayer::after {
   display: none;
 }
+
+/* Ефект з початку гри */
+.introGlow {
+  animation: glow 2s ease-in-out infinite;
+  position: relative;
+  z-index: 20;
+}
+.introGlow::before {
+  content: "✨✨✨";
+  position: absolute;
+  top: -20px;
+  left: -5px;
+  font-size: 20px;
+  color: #fff8b5;
+  animation: twinkle 1.5s ease-in-out infinite;
+  z-index: 25;
+}
+.introGlow::after {
+  display: none;
+}
+
+/* Ефект при ході гравця */
+.turnGlow {
+  animation: heroMoveUpDown 1s ease-in-out, glow 1.5s ease-in-out;
+  position: relative;
+  z-index: 20;
+}
+.turnGlow::before {
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  box-shadow: 0 0 20px 8px #fff8b5;
+  animation: twinkle 1.2s ease-in-out infinite;
+}

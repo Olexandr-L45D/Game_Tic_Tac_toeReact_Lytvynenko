@@ -20,15 +20,31 @@
   flex-direction: column;
   margin-left: 10px;
 }
+.Alltitle {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 2 auto 2px auto;
+  margin-left: 5px;
+  font-family: Fredoka;
+  font-weight: 1000;
+  font-size: 25px;
+  line-height: 2;
+  justify-content: start;
+  color: #ffffff;
+}
 .title {
   display: block;
   width: 100%;
   height: auto;
-  margin: 2 auto 16px auto;
+  margin: 0 auto 8px auto;
+  margin-left: 0px;
+  margin-right: 5px;
+  padding-right: 5px;
   font-family: Fredoka;
-  font-weight: 800;
-  font-size: 20px;
-  line-height: 1.4;
+  font-weight: 700;
+  font-size: 17px;
+  line-height: 1;
   justify-content: start;
   color: #ffffff;
 }
@@ -37,9 +53,9 @@
   width: 100%;
   height: auto;
   margin: 2 auto 10px auto;
-  font-weight: 900;
-  font-size: 20px;
-  line-height: 1.2;
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 1;
   text-align: center;
   justify-content: start;
   color: black;
@@ -48,12 +64,12 @@
   display: block;
   width: 100%;
   height: auto;
-  margin: 0 auto 16px auto;
+  margin: 0 auto 8px auto;
   margin-left: 30px;
   font-family: Fredoka;
-  font-weight: 600;
-  font-size: 18px;
-  line-height: 1.3;
+  font-weight: 700;
+  font-size: 17px;
+  line-height: 1;
   justify-content: start;
   color: #ffffff;
 }

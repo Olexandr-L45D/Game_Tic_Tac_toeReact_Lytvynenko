@@ -180,26 +180,29 @@ const TicTacToeGame = ({ settings, onEvent }) => {
           />
         )}
 
-        {/* <aside
-          className={`${css.playerLeft} ${
-            animateIntro ? `${css.playerIntro}` : ""
-          } ${current === "X" ? css.glowingPlayer : ""} ${
-            current === "X" && animateLeft ? css.animateHeroMove : ""
-          }`}
-        >
-          {getIconComponent("x")}
-          <span className={css.label}>You</span>
-        </aside> */}
         <aside
           className={`${css.playerLeft} ${animateIntro ? css.playerIntro : ""}`}
         >
-          <div
+          {/* <div
             className={`${current === "X" ? css.glowingPlayer : ""} ${
               animateLeft ? css.animateHeroMove : ""
             } ${css.heroIconWrapper}`}
           >
             {getIconComponent("x")}
+          </div> */}
+
+          <div
+            className={`${css.heroIconWrapper} ${
+              animateIntro
+                ? css.introGlow
+                : current === "X" && animateLeft
+                ? css.turnGlow
+                : ""
+            }`}
+          >
+            {getIconComponent("x")}
           </div>
+
           <span className={css.label}>You</span>
         </aside>
       </div>
@@ -236,7 +239,7 @@ const TicTacToeGame = ({ settings, onEvent }) => {
         >
           {getIconComponent("o")}
         </div>
-        <span className={css.label}>Opponent</span>
+        <span className={css.label}>PLAYER 2</span>
       </aside>
     </main>
   );

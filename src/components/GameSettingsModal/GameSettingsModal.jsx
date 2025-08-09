@@ -38,9 +38,10 @@ const GameSettingsModal = ({ onClose, onStart }) => {
     <section className={css.modalSection}>
       <div className={css.modalOverlay}>
         <section className={css.blokTitle}>
-          <h2 className={css.title}>To start a more interesting game,</h2>
-          <h3 className={css.text}>please select your hero,</h3>
-          <h3 className={css.text}>language and age.</h3>
+          <h1 className={css.Alltitle}>Tic-Tac-Toe Game 🥳 🏆</h1>
+          <h3 className={css.title}>Choose your hero, be a champ! ✨ </h3>
+          <h3 className={css.title}>Adjust the age and language ✨</h3>
+          <h3 className={css.text}>to suit you. ✨</h3>
         </section>
         <div className={css.modalContent}>
           {/* <h2 className={css.titleSet}>Settings</h2> */}
