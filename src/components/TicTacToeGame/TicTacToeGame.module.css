@@ -85,8 +85,6 @@
   flex-direction: column;
   align-items: center;
   justify-content: flex-end;
-  /* background: url("/src/assets/emages/Bacground89256.png") center/cover */
-  /* no-repeat; */
 }
 
 .playerRight {
@@ -123,7 +121,8 @@
   letter-spacing: 0%;
   text-align: center;
   vertical-align: middle;
-  margin-bottom: 25px;
+  margin-top: 0px;
+  margin-bottom: 15px;
 }
 
 .icon {
@@ -210,7 +209,6 @@
   width: 100%;
   height: 260px;
   display: flex;
-  /* flex-direction: row; */
   position: absolute;
 }
 .gridWrapper {
@@ -317,176 +315,3 @@
     transform: scale(1);
   }
 }
-/* .glowingPlayer */
-/* .glowingPlaye {
-  animation: glow 2s ease-in-out infinite;
-  position: relative;
-  z-index: 2;
-} */
-
-/* ✨ Зірочки */
-/* .glowingPlaye::before {
-  content: "✨✨✨";
-  position: absolute;
-  top: -20px;
-  left: -5px;
-  font-size: 20px;
-  color: #fff8b5;
-  animation: twinkle 1.5s ease-in-out infinite;
-  z-index: 2;
-} */
-
-/* 🧹 Видалено glow background позаду героя */
-/* .glowingPlaye::after {
-  display: none;
-} */
-
-/* @keyframes twinkle {
-  0%,
-  100% {
-    opacity: 0.5;
-    transform: scale(1) rotate(0deg);
-  }
-  50% {
-    opacity: 1;
-    transform: scale(1.2) rotate(10deg);
-  }
-}
-
-@keyframes floatDown {
-  0% {
-    transform: translateY(-10px);
-    opacity: 0;
-  }
-  100% {
-    transform: translateY(0);
-    opacity: 1;
-  }
-} */
-/* .playerIntro */
-/* .playerIntr {
-  animation: floatDown 1s ease-out forwards;
-  opacity: 0;
-} */
-/* .winnerHighlight */
-/* .winnerHighligh {
-  animation: floatUp 1.2s ease-in-out forwards, glow 2s ease-in-out infinite;
-  position: relative;
-  z-index: 2;
-} */
-/* .winEmoji */
-/* .winEmoj {
-  width: 32px;
-  height: 32px;
-  position: absolute;
-  top: -40px;
-  font-size: 40px;
-  animation: floatEmoji 1.5s ease-in-out;
-  z-index: 2;
-}
-@keyframes floatEmoji {
-  0% {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  50% {
-    opacity: 1;
-    transform: translateY(-5px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-} */
-
-/* @keyframes floatUp {
-  0% {
-    transform: translateY(0);
-  }
-  100% {
-    transform: translateY(-40px); 
-  }
-}
-@keyframes heroMoveUpDown {
-  0% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-20px);
-  }
-  100% {
-    transform: translateY(0);
-  }
-}
-
-.animateHeroMov {
-  animation: heroMoveUpDown 1s ease-in-out;
-} */
-
-/* щоб псевдоелементи працювали відносно героя */
-/* перекриває фон */
-/* .heroIconWrapper {
-  position: relative; 
-  display: inline-block;
-  z-index: 2; 
-} */
-
-/* клас для анімації, тепер на цій обгортці */
-/* .glowingPlayer {
-  animation: glow 2s ease-in-out infinite;
-  position: relative;
-  z-index: 2;
-}
-
-.glowingPlayer::before {
-  content: "✨✨✨";
-  position: absolute;
-  top: -20px;
-  left: -5px;
-  font-size: 20px;
-  color: #fff8b5;
-  animation: twinkle 1.5s ease-in-out infinite;
-  z-index: 2;
-}
-
-.glowingPlayer::after {
-  display: none;
-} */
-
-/* Ефект з початку гри */
-/* .introGlow {
-  animation: glow 2s ease-in-out infinite;
-  position: relative;
-  z-index: 2;
-}
-.introGlow::before {
-  content: "✨✨✨";
-  position: absolute;
-  top: -20px;
-  left: -5px;
-  font-size: 20px;
-  color: #fff8b5;
-  animation: twinkle 1.5s ease-in-out infinite;
-  z-index: 2;
-}
-.introGlow::after {
-  display: none;
-} */
-
-/* Ефект при ході гравця */
-/* .turnGlow {
-  animation: heroMoveUpDown 1s ease-in-out, glow 1.5s ease-in-out;
-  position: relative;
-  z-index: 2;
-}
-.turnGlow::before {
-  content: "";
-  position: absolute;
-  top: -10px;
-  left: -10px;
-  width: 90px;
-  height: 90px;
-  border-radius: 50%;
-  box-shadow: 0 0 20px 8px #fff8b5;
-  animation: twinkle 1.2s ease-in-out infinite;
-} */

@@ -3,6 +3,8 @@ import css from "./GameSettingsModal.module.css";
 import { useNavigate } from "react-router-dom";
 import startSound from "/src/assets/audio/startGame.mp3.wav";
 import endSound from "/src/assets/audio/endSong.mp3.wav";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const GameSettingsModal = ({ onClose, onStart }) => {
   const [theme, setTheme] = useState("rose");
@@ -13,7 +15,8 @@ const GameSettingsModal = ({ onClose, onStart }) => {
   const handleStart = () => {
     const audio = new Audio(startSound);
     audio.play().catch(e => console.warn("Autoplay blocked:", e));
-    alert("Have a nice game!");
+
+    toast.success("Have a nice game!");
   };
 
   const handleGameEnd = () => {
@@ -36,6 +39,17 @@ const GameSettingsModal = ({ onClose, onStart }) => {
 
   return (
     <section className={css.modalSection}>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000} // 3 seconds
+        hideProgressBar={false}
+        newestOnTop={true}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
       <div className={css.modalOverlay}>
         <section className={css.blokTitle}>
           <h1 className={css.Alltitle}>Tic-Tac-Toe Game 🥳 🏆</h1>

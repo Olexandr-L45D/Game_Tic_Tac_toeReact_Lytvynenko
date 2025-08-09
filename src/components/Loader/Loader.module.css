@@ -1,0 +1,23 @@
+.loaderContainer {
+  width: 840px;
+  height: 390px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(131, 166, 240, 0.54);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* z-index: 9999; */
+  /* перекриває інші елементи */
+  /* pointer-events: auto; */
+  /* дозволяє блокувати кліки */
+}
+
+.loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+  width: 100vw;
+}

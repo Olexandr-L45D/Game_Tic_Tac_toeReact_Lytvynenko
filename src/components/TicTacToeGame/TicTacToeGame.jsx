@@ -9,6 +9,8 @@ import PrincesBlue from "/src/assets/emages/BlueGirl.png";
 import { WinModal } from "../WinModal/WinModal";
 import { useNavigate } from "react-router-dom";
 import { WinModalMidle } from "../WinModalMidle/WinModalMidle";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 // import startSound from "/src/assets/audio/startGame.mp3.wav";
 // import clickSound from "/src/assets/audio/allclicks.mp3.wav";
 // import winSound from "/src/assets/audio/finalliVin.mp3.wav";
@@ -49,7 +51,6 @@ const TicTacToeGame = ({ settings, onEvent }) => {
   const [showHeroEffect, setShowHeroEffect] = useState(false);
   const [showHeroEffectRight, setShowHeroEffectRight] = useState(false);
   // const [winLine, setWinLine] = useState([]);
-  // useRef для аудіо
   const moveSoundX = useRef(null);
   const moveSoundO = useRef(null);
   const clickSoundRef = useRef(null);
@@ -60,14 +61,9 @@ const TicTacToeGame = ({ settings, onEvent }) => {
     moveSoundX.current = new Audio("/src/assets/audio/sunTuIX.mp3.wav");
     moveSoundO.current = new Audio("/src/assets/audio/sunTuNull.mp3.wav");
     clickSoundRef.current = new Audio("/src/assets/audio/allclicks.mp3.wav");
-    startAudioRef.current = new Audio("/src/assets/audio/startGame.mp3.wav");
+    startAudioRef.current = new Audio("/src/assets/audio/clikcs.mp3.wav");
     winAudioRef.current = new Audio("/src/assets/audio/finalliVin.mp3.wav");
   }, []);
-
-  // Звуки для ходів - old example
-  // const moveSoundX = new Audio("/src/assets/audio/sunTuIX.mp3.wav");
-  // const moveSoundO = new Audio("/src/assets/audio/sunTuNull.mp3.wav");
-  // Обробка старту гри
   // Обробка старту гри (стартовий ефект)
   useEffect(() => {
     setShowHeroEffect(true);
@@ -121,7 +117,7 @@ const TicTacToeGame = ({ settings, onEvent }) => {
     next[i] = current;
     const result = checkWin(next);
 
-    // Відтворення кліку
+    // Відтворення звуку кліку
     if (clickSoundRef.current) {
       clickSoundRef.current.currentTime = 0;
       clickSoundRef.current.play().catch(() => {});
@@ -129,41 +125,111 @@ const TicTacToeGame = ({ settings, onEvent }) => {
 
     setBoard(next);
 
+    // Якщо немає переможця та немає нічиєї
     if (!result) {
       setCurrent(current === "X" ? "O" : "X");
-    } else {
-      setWinner(result.player);
-      // setWinLine(result.line || []);
+      return;
+    }
 
-      if (result.player === "X") {
-        setShowLoading(true);
-        if (winAudioRef.current) {
-          winAudioRef.current.currentTime = 0;
-          winAudioRef.current.play().catch(() => {});
-        }
+    // Якщо є переможець
+    setWinner(result.player);
 
-        setTimeout(() => {
-          setShowLoading(false);
-          setWinner("X");
-        }, 3000);
-      } else if (result.player !== "Draw") {
-        setTimeout(() => {
-          navigate("/result", {
-            state: {
-              winner: result.player,
-              player1: "You",
-              player2: "Opponent",
-            },
-          });
-        }, 3000);
+    if (result.player === "X") {
+      // Анімація та звук для виграшу гравця X
+      toast.success("Congratulations on your victory.!");
+      setShowLoading(true);
+      if (winAudioRef.current) {
+        winAudioRef.current.currentTime = 0;
+        winAudioRef.current.play().catch(() => {});
       }
+
+      setTimeout(() => {
+        setShowLoading(false);
+        navigate("/result", {
+          state: {
+            winner: "X",
+            player1: "You",
+            player2: "PLAYER 2",
+          },
+        });
+      }, 1500);
+    } else if (result.player === "O") {
+      toast.success("The opponent won.");
+      // Переміг гравець O
+      setTimeout(() => {
+        navigate("/result", {
+          state: {
+            winner: "O",
+            player1: "You",
+            player2: "PLAYER 2",
+          },
+        });
+      }, 1500);
+    } else if (result.player === "Draw") {
+      // Нічия
+      toast.success("You have a draw!");
+      setTimeout(() => {
+        navigate("/result", {
+          state: {
+            winner: "Draw",
+            player1: "You",
+            player2: "PLAYER 2",
+          },
+        });
+      }, 1500);
     }
   };
+
+  // const handleClick = i => {
+  //   if (board[i] || winner) return;
+
+  //   const next = [...board];
+  //   next[i] = current;
+  //   const result = checkWin(next);
+
+  //   // Відтворення кліку
+  //   if (clickSoundRef.current) {
+  //     clickSoundRef.current.currentTime = 0;
+  //     clickSoundRef.current.play().catch(() => {});
+  //   }
+
+  //   setBoard(next);
+
+  //   if (!result) {
+  //     setCurrent(current === "X" ? "O" : "X");
+  //   } else {
+  //     setWinner(result.player);
+  //     // setWinLine(result.line || []);
+
+  //     if (result.player === "X") {
+  //       setShowLoading(true);
+  //       if (winAudioRef.current) {
+  //         winAudioRef.current.currentTime = 0;
+  //         winAudioRef.current.play().catch(() => {});
+  //       }
+
+  //       setTimeout(() => {
+  //         setShowLoading(false);
+  //         setWinner("X");
+  //       }, 1500);
+  //     } else if (result.player !== "Draw") {
+  //       setTimeout(() => {
+  //         navigate("/result", {
+  //           state: {
+  //             winner: result.player,
+  //             player1: "You",
+  //             player2: "PLAYER 2",
+  //           },
+  //         });
+  //       }, 1500);
+  //     }
+  //   }
+  // };
 
   useEffect(() => {
     const timer = setTimeout(() => {
       setAnimateIntro(false);
-    }, 3000);
+    }, 1500);
     return () => clearTimeout(timer);
   }, []);
 
@@ -212,6 +278,17 @@ const TicTacToeGame = ({ settings, onEvent }) => {
 
   return (
     <main className={css.wrapper}>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000} // 3 seconds
+        hideProgressBar={false}
+        newestOnTop={true}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
       <div className={css.playerLeftBlokLeft}>
         {showHeroEffect && (
           <HeroEffect

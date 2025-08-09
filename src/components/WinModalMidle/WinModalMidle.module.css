@@ -1,5 +1,4 @@
 /* WinModal.module.css */
-
 .loadingWrapper {
   position: fixed;
   top: 5px;
@@ -14,32 +13,44 @@
     no-repeat;
   box-sizing: border-box;
   margin-left: -10px;
-  overflow: hidden; /* щоб конфеті не вилітало за межі */
+  overflow: hidden;
 }
 
-/* Конфеті — маленькі кружечки */
+/* Базовий стиль конфеті */
 .confetti {
   position: absolute;
-  top: -10px; /* починають трохи зверху за межами контейнера */
-  width: 8px;
-  height: 8px;
+  top: -10px;
   background-color: var(--confetti-color, #f5af19);
-  border-radius: 50%;
   opacity: 0.9;
   animation-name: fallConfetti;
   animation-timing-function: linear;
   animation-iteration-count: 1;
   animation-fill-mode: forwards;
-
-  /* Рандомізуємо позицію по горизонталі і тривалість анімації */
   left: calc(var(--confetti-left, 50%) * 1%);
   animation-duration: var(--confetti-duration, 3s);
   animation-delay: var(--confetti-delay, 0s);
-  background-color: var(--confetti-color, #f5af19);
   box-shadow: 0 0 6px var(--confetti-color, #f5af19);
 }
 
-/* Анімація падіння */
+/* Форми */
+.circle {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.square {
+  width: 8px;
+  height: 8px;
+  border-radius: 2px;
+}
+
+.rectangle {
+  width: 12px;
+  height: 6px;
+  border-radius: 2px;
+}
+
 @keyframes fallConfetti {
   0% {
     transform: translateY(0) rotate(0deg);

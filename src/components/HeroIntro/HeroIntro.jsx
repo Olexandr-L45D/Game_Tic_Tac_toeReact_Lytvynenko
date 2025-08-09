@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import css from "./HeroIntro.module.css";
-import starSound from "/src/assets/audio/mixKids.mp3.wav"; // озвучка привітання
+import starSound from "/src/assets/audio/successMixkit.mp3.wav"; // озвучка привітання
 
 export default function HeroIntro({
   hero,
   visible,
-  duration = 3000,
+  duration = 1000,
   onFinish,
 }) {
   const [show, setShow] = useState(visible);

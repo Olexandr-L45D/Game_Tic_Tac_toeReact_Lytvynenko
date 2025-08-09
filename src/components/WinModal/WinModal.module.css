@@ -4,8 +4,8 @@
   position: fixed;
   top: 5px;
   left: 0;
-  width: 820px;
-  height: 370px;
+  width: 835px;
+  height: 375px;
   z-index: 1000;
   display: flex;
   justify-content: center;
@@ -41,4 +41,50 @@
 
 .button:hover {
   text-decoration: underline; /* або легкий ефект, без фону */
+}
+/* Базовий стиль конфеті */
+.confetti {
+  position: absolute;
+  top: -10px;
+  background-color: var(--confetti-color, #f5af19);
+  opacity: 0.9;
+  animation-name: fallConfetti;
+  animation-timing-function: linear;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  left: calc(var(--confetti-left, 50%) * 1%);
+  animation-duration: var(--confetti-duration, 3s);
+  animation-delay: var(--confetti-delay, 0s);
+  box-shadow: 0 0 6px var(--confetti-color, #f5af19);
+}
+
+/* Форми */
+.circle {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.square {
+  width: 8px;
+  height: 8px;
+  border-radius: 2px;
+}
+
+.rectangle {
+  width: 12px;
+  height: 6px;
+  border-radius: 2px;
+}
+
+/* Анімація падіння */
+@keyframes fallConfetti {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 0.9;
+  }
+  100% {
+    transform: translateY(400px) rotate(360deg);
+    opacity: 0;
+  }
 }

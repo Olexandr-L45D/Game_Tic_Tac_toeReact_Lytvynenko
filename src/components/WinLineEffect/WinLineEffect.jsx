@@ -20,15 +20,13 @@ export default function WinLineEffect({
   }, [onFinish, playSound]);
 
   return (
-    <div className={css.overlay}>
+    <section className={css.overlay}>
       {bgImage && (
         <div
           className={css.bg}
           style={{ backgroundImage: `url(${bgImage})` }}
         />
       )}
-
-      {/* Сітка з виграшною лінією */}
       <div className={css.grid}>
         {cells.map(index => (
           <div key={index} className={css.winCell}>
@@ -36,6 +34,6 @@ export default function WinLineEffect({
           </div>
         ))}
       </div>
-    </div>
+    </section>
   );
 }
