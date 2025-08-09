@@ -1,3 +1,8 @@
+.text {
+  margin: 0;
+  color: orangered;
+}
+
 .wrapper {
   display: flex;
   flex-direction: row;

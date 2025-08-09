@@ -6,7 +6,6 @@ import css from "./TicTacToeGame.module.css";
 import Rose from "/assets/images/RoseYellow.png";
 import Princesse from "/assets/images/Princasse.png";
 import PrincesBlue from "/src/assets/emages/BlueGirl.png";
-// import CircleBlue from "/src/assets/emages/CircleBlueCircle.png";
 import { WinModal } from "../WinModal/WinModal";
 import { useNavigate } from "react-router-dom";
 import { WinModalMidle } from "../WinModalMidle/WinModalMidle";
@@ -14,6 +13,9 @@ import startSound from "/src/assets/audio/startGame.mp3.wav";
 import clickSound from "/src/assets/audio/allclicks.mp3.wav";
 import winSound from "/src/assets/audio/finalliVin.mp3.wav";
 import HeroIntro from "../HeroIntro/HeroIntro";
+import HeroEffect from "../HeroEffect/HeroEffect";
+import WinLineEffect from "../WinLineEffect/WinLineEffect";
+import GroupGreeting from "/src/assets/emages/GroupFone3.png";
 
 const iconComponents = {
   rose: {
@@ -44,10 +46,18 @@ const TicTacToeGame = ({ settings, onEvent }) => {
   // Анімації ходів
   const [animateLeft, setAnimateLeft] = useState(false);
   const [animateRight, setAnimateRight] = useState(false);
+  const [showHeroEffect, setShowHeroEffect] = useState(false);
+  const [showHeroEffectRight, setShowHeroEffectRight] = useState(false);
+  const [winLine, setWinLine] = useState([]);
+
   // Звуки для ходів
   const moveSoundX = new Audio("/src/assets/audio/sunTuIX.mp3.wav");
   const moveSoundO = new Audio("/src/assets/audio/sunTuNull.mp3.wav");
   // Обробка старту гри
+  useEffect(() => {
+    setShowHeroEffect(true); // стартовий ефект
+  }, []);
+
   useEffect(() => {
     const startAudio = new Audio(startSound);
     // Відтворення звуку після першого кліку користувача на кнопку початку гри на HomePage
@@ -60,10 +70,10 @@ const TicTacToeGame = ({ settings, onEvent }) => {
       window.removeEventListener("click", handleUserInteraction);
     };
   }, []);
-
   // Обробка анімації при зміні current (ходу)
   useEffect(() => {
     if (current === "X") {
+      setShowHeroEffectRight(true);
       setAnimateLeft(true);
       setAnimateRight(false);
       moveSoundX.currentTime = 0;
@@ -71,6 +81,7 @@ const TicTacToeGame = ({ settings, onEvent }) => {
       const timer = setTimeout(() => setAnimateLeft(false), 2000);
       return () => clearTimeout(timer);
     } else if (current === "O") {
+      setShowHeroEffect(true); // ефект при кліку гравця = Х
       setAnimateRight(true);
       setAnimateLeft(false);
       moveSoundO.currentTime = 0;
@@ -82,34 +93,47 @@ const TicTacToeGame = ({ settings, onEvent }) => {
 
   const handleClick = i => {
     if (board[i] || winner) return;
+
     const next = [...board];
     next[i] = current;
-    const result = checkWin(next);
+    const result = checkWin(next); // тепер повертає { player, line } або null
 
+    // Звук кліку
     const click = new Audio(clickSound);
     click.currentTime = 0;
     click.play().catch(() => {});
 
     setBoard(next);
-    setWinner(result);
-    onEvent?.({ type: "move", board: next, result, currentPlayer: current });
 
     if (!result) {
+      // Якщо переможця ще нема — міняємо хід
       setCurrent(current === "X" ? "O" : "X");
     } else {
-      if (result === "X") {
+      // Зберігаємо переможця і виграшну лінію
+      setWinner(result.player);
+      setWinLine(result.line || []);
+
+      if (result.player === "X") {
+        // Стара логіка з показом проміжного модального вікна
         setShowLoading(true);
         const winAudio = new Audio(winSound);
         winAudio.currentTime = 0;
         winAudio.play().catch(() => {});
+
+        // Чекаємо 3 сек, ховаємо лоадер і показуємо фінальне модальне
         setTimeout(() => {
           setShowLoading(false);
           setWinner("X");
         }, 3000);
-      } else {
+      } else if (result.player !== "Draw") {
+        // Якщо переміг не X (наприклад, O) — просто 3 сек затримка перед переходом
         setTimeout(() => {
           navigate("/result", {
-            state: { winner: result, player1: "You", player2: "Opponent" },
+            state: {
+              winner: result.player,
+              player1: "You",
+              player2: "Opponent",
+            },
           });
         }, 3000);
       }
@@ -134,12 +158,12 @@ const TicTacToeGame = ({ settings, onEvent }) => {
     [0, 4, 8],
     [2, 4, 6],
   ];
-
   const checkWin = b => {
     for (let [a, b1, c] of lines) {
-      if (b[a] && b[a] === b[b1] && b[a] === b[c]) return b[a];
+      if (b[a] && b[a] === b[b1] && b[a] === b[c])
+        return { player: b[a], line: [a, b1, c] };
     }
-    return b.every(Boolean) ? "Draw" : null;
+    return b.every(Boolean) ? { player: "Draw", line: [] } : null;
   };
 
   const reset = () => {
@@ -169,28 +193,19 @@ const TicTacToeGame = ({ settings, onEvent }) => {
   return (
     <main className={css.wrapper}>
       <div className={css.playerLeftBlokLeft}>
-        {animateIntro && (
-          <HeroIntro
+        {showHeroEffect && (
+          <HeroEffect
             hero={
               typeof iconComponents[settings.theme].x === "string"
                 ? iconComponents[settings.theme].x
                 : React.createElement(iconComponents[settings.theme].x)
             }
-            onFinish={() => console.log("Hero intro finished")}
+            visible={showHeroEffect}
+            onFinish={() => setShowHeroEffect(false)}
           />
         )}
 
-        <aside
-          className={`${css.playerLeft} ${animateIntro ? css.playerIntro : ""}`}
-        >
-          {/* <div
-            className={`${current === "X" ? css.glowingPlayer : ""} ${
-              animateLeft ? css.animateHeroMove : ""
-            } ${css.heroIconWrapper}`}
-          >
-            {getIconComponent("x")}
-          </div> */}
-
+        <aside className={css.playerLeft}>
           <div
             className={`${css.heroIconWrapper} ${
               animateIntro
@@ -222,30 +237,56 @@ const TicTacToeGame = ({ settings, onEvent }) => {
               </button>
             ))}
           </div>
+          {winner && winLine.length > 0 && (
+            <WinLineEffect
+              cells={winLine}
+              board={board.map(c => (c ? getIconComponent(c) : null))}
+              theme={theme}
+              bgImage={GroupGreeting}
+            />
+          )}
         </section>
 
         {winner === "X" && <WinModal onRestart={handleRestartGame} />}
 
         {showLoading && <WinModalMidle onRestart={() => {}} />}
       </section>
-
-      <aside
-        className={`${css.playerRight} ${animateIntro ? css.playerIntro : ""}`}
-      >
-        <div
-          className={`${current === "0" ? css.glowingPlayer : ""} ${
-            animateRight ? css.animateHeroMove : ""
-          } ${css.heroIconWrapper}`}
+      <div className={css.playerLeftBlokRight}>
+        {showHeroEffectRight && (
+          <HeroIntro
+            hero={
+              typeof iconComponents[settings.theme].o === "string"
+                ? iconComponents[settings.theme].o
+                : React.createElement(iconComponents[settings.theme].o)
+            }
+            visible={showHeroEffectRight}
+            onFinish={() => setShowHeroEffectRight(false)}
+          />
+        )}
+        <aside
+          className={`${css.playerRight} ${
+            animateIntro ? css.playerIntro : ""
+          }`}
         >
-          {getIconComponent("o")}
-        </div>
-        <span className={css.label}>PLAYER 2</span>
-      </aside>
+          <div
+            className={`${current === "0" ? css.glowingPlayer : ""} ${
+              animateRight ? css.animateHeroMove : ""
+            } ${css.heroIconWrapper}`}
+          >
+            {getIconComponent("o")}
+          </div>
+          <span className={css.label}>PLAYER 2</span>
+        </aside>
+      </div>
     </main>
   );
 };
 
 export default TicTacToeGame;
+
+// <aside
+//   className={`${css.playerLeft} ${animateIntro ? css.playerIntro : ""}`}
+// ></aside>;
 
 // const TicTacToeGame = ({ settings, onEvent }) => {
 //   const [board, setBoard] = useState(Array(9).fill(null));

@@ -9,7 +9,7 @@
   align-items: center;
   text-align: center;
   animation: heroIntroMove 1.8s ease-out forwards;
-  /* background-image: url("/src/assets/emages/StarksHeroYour.png"); */
+  background-image: url("/src/assets/emages/StarksHeroYour.png");
   background-repeat: no-repeat;
   background-position: center;
 }
@@ -58,12 +58,13 @@
   line-height: 1;
 }
 
-/* Зірки Голубі = ✨ навколо */
+/* Зірки✨ навколо */
 .star {
+  /* content: */
   position: absolute;
-  width: 5px;
-  height: 5px;
-  background: radial-gradient(circle, #1b88e1 0%, #60a0df 80%);
+  width: 3px;
+  height: 3px;
+  background: radial-gradient(circle, #fff8d6 0%, #ffd700 80%);
   border-radius: 50%;
   animation: starBlink 2s infinite ease-in-out;
 }

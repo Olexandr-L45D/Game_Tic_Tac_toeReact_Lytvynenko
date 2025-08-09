@@ -55,7 +55,6 @@ const GameSettingsModal = ({ onClose, onStart }) => {
                 <option value="man">Man</option>
               </select>
             </label>
-
             <label>
               Age:
               <input
@@ -63,10 +62,9 @@ const GameSettingsModal = ({ onClose, onStart }) => {
                 value={age}
                 onChange={e => setAge(Number(e.target.value))}
                 min="3"
-                max="12"
+                max="17"
               />
             </label>
-
             <label>
               Language:
               <select
@@ -75,6 +73,8 @@ const GameSettingsModal = ({ onClose, onStart }) => {
               >
                 <option value="uk">Українська</option>
                 <option value="en">English</option>
+                <option value="pl">Polski</option> {/* польська їх мовою */}
+                <option value="de">Deutsch</option> {/* німецька їх мовою */}
               </select>
             </label>
 

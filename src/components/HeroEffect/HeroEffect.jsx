@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import css from "./HeroIntro.module.css";
+import css from "./HeroEffect.module.css";
 import starSound from "/src/assets/audio/mixKids.mp3.wav"; // озвучка привітання
 
-export default function HeroIntro({
+export default function HeroEffect({
   hero,
   visible,
   duration = 3000,
@@ -31,9 +31,7 @@ export default function HeroIntro({
 
   return (
     <section className={css.heroWrapper}>
-      <h2 className={css.heroTitle}>Player</h2>
-      <h2 className={css.heroText}>2’s turn</h2>
-
+      <h2 className={css.heroTitle}>Your turn</h2>
       <div className={css.heroImageWrapper}>
         {isString ? (
           <img src={hero} alt="Hero" className={css.heroImage} />
