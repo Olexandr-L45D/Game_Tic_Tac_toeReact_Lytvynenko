@@ -1,15 +1,19 @@
 import css from "./WinModal.module.css";
 import restartSound from "/src/assets/audio/mixKids.mp3.wav";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export const WinModal = ({ onRestart }) => {
   const handleGameFinall = () => {
     const audio = new Audio(restartSound);
     audio.play().catch(e => console.warn("Autoplay blocked:", e));
+    toast.success(
+      "Congratulations on your victory! 🏆 Fantastic win! 🥳 Every victory brings you closer to greatness.Keep having fun! 😄🎈"
+    );
 
-    alert("Congratulations on your victory!");
     setTimeout(() => {
       onRestart();
-    }, 1500);
+    }, 3000);
   };
   // Генеруємо масив з рандомними стилями для кожного конфеті
   const confettiCount = 50;
@@ -38,6 +42,17 @@ export const WinModal = ({ onRestart }) => {
   });
   return (
     <section className={css.container}>
+      <ToastContainer
+        position="top-right"
+        autoClose={7000} // 5 seconds
+        hideProgressBar={false}
+        newestOnTop={true}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
       <div>
         {confettis.map(({ left, duration, delay, color, shape }, i) => (
           <span

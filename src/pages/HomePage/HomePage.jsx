@@ -13,12 +13,11 @@ export default function HomePage() {
   const handleGameStart = () => {
     const audio = new Audio(startSound);
     audio.play().catch(e => console.warn("Autoplay blocked:", e));
-
     setLoading(true);
     setTimeout(() => {
       toast.success("Сustomize the game for yourself");
       navigate("/gamesetting");
-    }, 1000); // плавний перехід після 2с
+    }, 2000); // плавний перехід після 2с
   };
 
   return (
@@ -38,9 +37,26 @@ export default function HomePage() {
         <Loader />
       ) : (
         <div className={css.card}>
+          <div className={css.titleGlow}></div>
           <div onClick={handleGameStart} className={css.gameStart}></div>
         </div>
       )}
     </section>
   );
 }
+
+// const [showStarkSmailEffect, setShowStarkSmailEffect] = useState(false);
+// // Обробка старту гри (стартовий ефект)
+// useEffect(() => {
+//   setShowStarkSmailEffect(true);
+// }, []);
+
+// використати сет в Хандлеклік
+//  setShowStarkSmailEffect(true);
+//  <section className={css.heroWrapper}>SVITINNY</section>;
+//  {
+//    /* add test */
+//  }
+//  {
+//    showStarkSmailEffect && <StarkHeroEffect onRestart={() => {}} />;
+//  }

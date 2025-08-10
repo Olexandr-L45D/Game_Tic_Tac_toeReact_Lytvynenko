@@ -1,0 +1,88 @@
+.heroWrapper {
+  margin-top: 50px;
+  width: 70px;
+  height: 250px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  text-align: center;
+  /* background-image: url("/src/assets/emages/StarksHeroYour.png"); */
+  animation: heroIntroMove 1.8s ease-out forwards;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.heroImageWrapper {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  margin-top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.starImage {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-image: url("/src/assets/emages/StarSmaile.png");
+  background-size: 120%; /* зменшуємо зображення всередині кола */
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: transparent; /* прибираємо фон */
+
+  /* ніжне привітальне світіння */
+  box-shadow: 0 0 12px rgba(255, 223, 0, 0.8), 0 0 24px rgba(255, 223, 0, 0.6),
+    0 0 36px rgba(255, 223, 0, 0.4);
+}
+
+/* .starImage {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-image: url("/src/assets/emages/StarSmaile.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.8), 0 0 30px rgba(255, 215, 0, 0.6),
+    0 0 45px rgba(255, 215, 0, 0.4);
+} */
+
+/* .heroWrapper {
+  margin-top: 50px;
+  width: 70px;
+  height: 250px;
+  position: relative;
+  display: flex;
+  flex-direction: column; 
+  justify-content: flex-start; 
+  align-items: center;
+  text-align: center;
+  background-image: url("/src/assets/emages/StarksHeroYour.png");
+  animation: heroIntroMove 1.8s ease-out forwards;
+
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.heroImageWrapper {
+  position: relative;
+  width: 50px;
+  height: 50px;
+  margin-top: 0;
+  background-image: url("/src/assets/emages/StarksHeroYour.png");
+}
+
+.starImage {
+  width: 60px;
+  height: 60px;
+  opacity: 1;
+  margin-top: 0px;
+  border-radius: 50%;
+  z-index: 2;
+  background-image: url("/src/assets/emages/StarSmaile.png");
+  background-repeat: no-repeat;
+  background-position: center;
+} */

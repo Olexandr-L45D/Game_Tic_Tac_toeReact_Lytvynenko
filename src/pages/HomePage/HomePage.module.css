@@ -24,22 +24,6 @@
   transform: translateY(40px); /* зміщення вниз */
   /* background: url("/src/assets/emages/endSong.mp3"); */
 }
-.them_defaul {
-  background-image: url("/src/assets/audio/finalliVin.mp3.wav"),
-    url("/src/assets/audio/mixKids.mp3.wav"),
-    url("/src/assets/audio/successMixkit.mp3.wav"),
-    url("/src/assets/audio/endSong.mp3.wav"),
-    url("/src/assets/audio/endSong.mp3.wav"),
-    url("/src/assets/audio/clikcs.mp3.wav"),
-    url("/src/assets/emages/BlueGirl.png"),
-    url("/src/assets/emages/starcPhon.png"),
-    url("/src/assets/emages/GroupFone3.png"),
-    url("/src/assets/emages/starcPhon.png"),
-    url("/src/assets/audio/sunTuIX.mp3.wav"),
-    url("/src/assets/emages/GroupFone3.png"),
-    url("/src/assets/audio/sunTuNull.mp3.wav");
-  background-size: cover;
-}
 
 .card {
   display: flex;
@@ -47,6 +31,32 @@
   justify-content: center;
   align-items: center;
   justify-content: center;
+}
+
+.card {
+  position: relative; /* дозволяє абсолютно позиціонувати сяйво всередині */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.titleGlow {
+  position: absolute;
+  top: -105px; /* регулюй, щоб сяйво збігалося з заголовком */
+  left: 51%;
+  transform: translateX(-50%);
+  width: 175px; /* підлаштуй під розмір заголовка */
+  height: 175px;
+  background: url("/src/assets/emages/MaskHomeCentre.png") center/contain
+    no-repeat;
+  pointer-events: none; /* гарантує, що сяйво не заважає клікам */
+  z-index: 0; /* позаду заголовка і кнопки */
+}
+
+.cartTitle {
+  position: relative;
+  z-index: 1; /* текст над сяйвом */
 }
 
 .cartTitle {
@@ -75,4 +85,23 @@
   margin: 5px;
   margin-bottom: 0px;
   padding: 0px;
+}
+
+.them_defaul {
+  background-image: url("/src/assets/emages/MaskHomeCentre.png"),
+    url("/src/assets/audio/mixKids.mp3.wav"),
+    url("/src/assets/audio/successMixkit.mp3.wav"),
+    url("/src/assets/audio/endSong.mp3.wav"),
+    url("/src/assets/audio/endSong.mp3.wav"),
+    url("/src/assets/audio/clikcs.mp3.wav"),
+    url("/src/assets/emages/BlueGirl.png"),
+    url("/src/assets/emages/starcPhon.png"),
+    url("/src/assets/emages/GroupFone3.png"),
+    url("/src/assets/emages/starcPhon.png"),
+    url("/src/assets/audio/sunTuIX.mp3.wav"),
+    url("/src/assets/emages/GroupFone3.png"),
+    url("/src/assets/emages/StarksHeroYour.png"),
+    url("/src/assets/emages/StarSmaile.png"),
+    url("/src/assets/audio/sunTuNull.mp3.wav");
+  background-size: cover;
 }

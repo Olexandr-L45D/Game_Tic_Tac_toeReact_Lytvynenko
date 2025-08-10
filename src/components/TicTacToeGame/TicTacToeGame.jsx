@@ -11,11 +11,10 @@ import { useNavigate } from "react-router-dom";
 import { WinModalMidle } from "../WinModalMidle/WinModalMidle";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-// import startSound from "/src/assets/audio/startGame.mp3.wav";
-// import clickSound from "/src/assets/audio/allclicks.mp3.wav";
-// import winSound from "/src/assets/audio/finalliVin.mp3.wav";
+import winSound from "/src/assets/audio/finalliVin.mp3.wav";
 import HeroIntro from "../HeroIntro/HeroIntro";
 import HeroEffect from "../HeroEffect/HeroEffect";
+import StarkHeroEffect from "../StarkHeroEffect/StarkHeroEffect";
 // import WinLineEffect from "../WinLineEffect/WinLineEffect";
 // import GroupGreeting from "/src/assets/emages/GroupFone3.png";
 
@@ -50,12 +49,14 @@ const TicTacToeGame = ({ settings, onEvent }) => {
   const [animateRight, setAnimateRight] = useState(false);
   const [showHeroEffect, setShowHeroEffect] = useState(false);
   const [showHeroEffectRight, setShowHeroEffectRight] = useState(false);
+  // const [showStarkSmailEffect, setShowStarkSmailEffect] = useState(false);
   // const [winLine, setWinLine] = useState([]);
   const moveSoundX = useRef(null);
   const moveSoundO = useRef(null);
   const clickSoundRef = useRef(null);
   const startAudioRef = useRef(null);
   const winAudioRef = useRef(null);
+  const [showSmile, setShowSmile] = useState(false);
 
   useEffect(() => {
     moveSoundX.current = new Audio("/src/assets/audio/sunTuIX.mp3.wav");
@@ -68,7 +69,6 @@ const TicTacToeGame = ({ settings, onEvent }) => {
   useEffect(() => {
     setShowHeroEffect(true);
   }, []);
-
   // Відтворення стартового звуку після першого кліку на сторінці (HomePage)
   useEffect(() => {
     const handleUserInteraction = () => {
@@ -88,28 +88,25 @@ const TicTacToeGame = ({ settings, onEvent }) => {
       setShowHeroEffectRight(true);
       setAnimateLeft(true);
       setAnimateRight(false);
-
       if (moveSoundX.current) {
         moveSoundX.current.currentTime = 0;
         moveSoundX.current.play().catch(() => {});
       }
-
       timer = setTimeout(() => setAnimateLeft(false), 2000);
     } else if (current === "O") {
       setShowHeroEffect(true);
       setAnimateRight(true);
       setAnimateLeft(false);
-
       if (moveSoundO.current) {
         moveSoundO.current.currentTime = 0;
         moveSoundO.current.play().catch(() => {});
       }
-
       timer = setTimeout(() => setAnimateRight(false), 2000);
     }
     return () => clearTimeout(timer);
   }, [current]);
 
+  // Основна функція логіки при кліках в грі
   const handleClick = i => {
     if (board[i] || winner) return;
 
@@ -125,106 +122,60 @@ const TicTacToeGame = ({ settings, onEvent }) => {
 
     setBoard(next);
 
-    // Якщо немає переможця та немає нічиєї
+    // Якщо немає переможця — міняємо хід і виходимо
     if (!result) {
       setCurrent(current === "X" ? "O" : "X");
       return;
     }
 
-    // Якщо є переможець
-    setWinner(result.player);
+    // Маємо результат — зберігаємо гравця (але winner встановимо пізніше для X, після loading)
+    const player = result.player;
 
-    if (result.player === "X") {
-      // Анімація та звук для виграшу гравця X
-      toast.success("Congratulations on your victory.!");
-      setShowLoading(true);
+    if (player === "X") {
+      // Показуємо проміжну анімацію а саме смайлик з підсвіткою над героєм = Х зліва
+      setShowSmile(true);
+      // Показуємо проміжну анімацію/екран (конфеті тощо)
+      // setShowLoading(true);
+      setTimeout(() => {
+        setShowLoading(true);
+        setWinner("X");
+      }, 3000);
+
+      // Повідомлення + звук
+      toast.success("Congratulations on your victory! 🏆");
       if (winAudioRef.current) {
         winAudioRef.current.currentTime = 0;
         winAudioRef.current.play().catch(() => {});
+      } else {
+        // запасний варіант (якщо ref не ініціалізований)
+        const a = new Audio(winSound);
+        a.play().catch(() => {});
       }
 
+      // Після 2 секунд ховаємо loading і встановлюємо winner = "X" (це викликає показ WinModal)
       setTimeout(() => {
         setShowLoading(false);
-        navigate("/result", {
-          state: {
-            winner: "X",
-            player1: "You",
-            player2: "PLAYER 2",
-          },
-        });
-      }, 1500);
-    } else if (result.player === "O") {
-      toast.success("The opponent won.");
-      // Переміг гравець O
+        setShowSmile(false);
+        setWinner("X");
+      }, 6000);
+    } else if (player === "O") {
+      // Противник виграв — робимо коротку паузу і переходимо на сторінку результату
+      toast.success("The opponent won. 😞");
       setTimeout(() => {
         navigate("/result", {
-          state: {
-            winner: "O",
-            player1: "You",
-            player2: "PLAYER 2",
-          },
+          state: { winner: "O", player1: "You", player2: "PLAYER 2" },
         });
       }, 1500);
-    } else if (result.player === "Draw") {
-      // Нічия
+    } else if (player === "Draw") {
+      // Нічия — переходимо на сторінку результату (теж з невеликою затримкою)
       toast.success("You have a draw!");
       setTimeout(() => {
         navigate("/result", {
-          state: {
-            winner: "Draw",
-            player1: "You",
-            player2: "PLAYER 2",
-          },
+          state: { winner: "Draw", player1: "You", player2: "PLAYER 2" },
         });
       }, 1500);
     }
   };
-
-  // const handleClick = i => {
-  //   if (board[i] || winner) return;
-
-  //   const next = [...board];
-  //   next[i] = current;
-  //   const result = checkWin(next);
-
-  //   // Відтворення кліку
-  //   if (clickSoundRef.current) {
-  //     clickSoundRef.current.currentTime = 0;
-  //     clickSoundRef.current.play().catch(() => {});
-  //   }
-
-  //   setBoard(next);
-
-  //   if (!result) {
-  //     setCurrent(current === "X" ? "O" : "X");
-  //   } else {
-  //     setWinner(result.player);
-  //     // setWinLine(result.line || []);
-
-  //     if (result.player === "X") {
-  //       setShowLoading(true);
-  //       if (winAudioRef.current) {
-  //         winAudioRef.current.currentTime = 0;
-  //         winAudioRef.current.play().catch(() => {});
-  //       }
-
-  //       setTimeout(() => {
-  //         setShowLoading(false);
-  //         setWinner("X");
-  //       }, 1500);
-  //     } else if (result.player !== "Draw") {
-  //       setTimeout(() => {
-  //         navigate("/result", {
-  //           state: {
-  //             winner: result.player,
-  //             player1: "You",
-  //             player2: "PLAYER 2",
-  //           },
-  //         });
-  //       }, 1500);
-  //     }
-  //   }
-  // };
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -290,6 +241,8 @@ const TicTacToeGame = ({ settings, onEvent }) => {
         pauseOnHover
       />
       <div className={css.playerLeftBlokLeft}>
+        {showSmile && <StarkHeroEffect onRestart={() => {}} />}
+
         {showHeroEffect && (
           <HeroEffect
             hero={
@@ -334,15 +287,6 @@ const TicTacToeGame = ({ settings, onEvent }) => {
               </button>
             ))}
           </div>
-          {/*           
-          {winner && winLine.length > 0 && (
-            <WinLineEffect
-              cells={winLine}
-              board={board.map(c => (c ? getIconComponent(c) : null))}
-              theme={theme}
-              bgImage={GroupGreeting}
-            />
-          )} */}
         </section>
 
         {winner === "X" && <WinModal onRestart={handleRestartGame} />}
@@ -381,6 +325,51 @@ const TicTacToeGame = ({ settings, onEvent }) => {
 };
 
 export default TicTacToeGame;
+
+// useEffect(() => {
+//   const timer = setTimeout(() => {
+//     if (winner === "X") {
+//       setShowLoading(true);
+//     }
+//   }, 2000);
+//   return () => clearTimeout(timer);
+// }, [winner]);
+
+//{
+/*         
+        {winner === "X" && showStarkSmailEffect && (
+          <StarkHeroEffect onRestart={() => {}} />
+        )} */
+//}
+
+//{
+/* {showStarkSmailEffect && (
+          <StarkHeroEffect
+            visible={showStarkSmailEffect}
+            onFinish={() => setShowStarkSmailEffect(false)}
+          />
+        )} */
+//}
+
+// якщо я хочу з затримкою то пишу в середину сеттаймаута
+// useEffect(() => {
+//   const timer = setTimeout(() => {
+//     if (winner === "X") {
+//       setShowSmile(true);
+//     }
+//   }, 2000);
+//   return () => clearTimeout(timer);
+// }, [winner]);
+
+/*           
+          {winner && winLine.length > 0 && (
+            <WinLineEffect
+              cells={winLine}
+              board={board.map(c => (c ? getIconComponent(c) : null))}
+              theme={theme}
+              bgImage={GroupGreeting}
+            />
+          )} */
 
 // <aside
 //   className={`${css.playerLeft} ${animateIntro ? css.playerIntro : ""}`}
@@ -437,7 +426,8 @@ export default TicTacToeGame;
 //           // тепер тільки встановлюємо winner
 //           setWinner("X");
 //         }, 3000); // можеш змінити тривалість
-//       } else {
+//       }
+//else {
 //         setTimeout(() => {
 //           navigate("/result", {
 //             state: {
