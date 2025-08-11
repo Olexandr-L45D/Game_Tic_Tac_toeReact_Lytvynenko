@@ -8,9 +8,7 @@ import Princesse from "/assets/images/Princasse.png";
 import PrincesBlue from "/src/assets/emages/BlueGirl.png";
 import { WinModal } from "../WinModal/WinModal";
 import { useNavigate } from "react-router-dom";
-import { WinModalMidle } from "../WinModalMidle/WinModalMidle";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+// import { WinModalMidle } from "../WinModalMidle/WinModalMidle";
 import winSound from "/src/assets/audio/finalliVin.mp3.wav";
 import HeroIntro from "../HeroIntro/HeroIntro";
 import HeroEffect from "../HeroEffect/HeroEffect";
@@ -44,7 +42,7 @@ const TicTacToeGame = ({ settings, onEvent }) => {
   const navigate = useNavigate();
   const [animateIntro, setAnimateIntro] = useState(true);
   const [showLoadingFirst, setshowLoadingFirst] = useState(false);
-  const [showLoading, setShowLoading] = useState(false);
+  // const [showLoading, setShowLoading] = useState(false);
   // Анімації ходів showLoadingFirst
   const [animateLeft, setAnimateLeft] = useState(false);
   const [animateRight, setAnimateRight] = useState(false);
@@ -110,29 +108,6 @@ const TicTacToeGame = ({ settings, onEvent }) => {
     }
     return () => clearTimeout(timer);
   }, [current]);
-  // useEffect(() => {
-  //   let timer; current === "O"
-  //   if (current === "X") {
-  //     setShowHeroEffectRight(true);
-  //     setAnimateLeft(true);
-  //     setAnimateRight(false);
-  //     if (moveSoundX.current) {
-  //       moveSoundX.current.currentTime = 0;
-  //       moveSoundX.current.play().catch(() => {});
-  //     }
-  //     timer = setTimeout(() => setAnimateLeft(false), 1500);
-  //   } else if (current === "O") {
-  //     setShowHeroEffect(true);
-  //     setAnimateRight(true);
-  //     setAnimateLeft(false);
-  //     if (moveSoundO.current) {
-  //       moveSoundO.current.currentTime = 0;
-  //       moveSoundO.current.play().catch(() => {});
-  //     }
-  //     timer = setTimeout(() => setAnimateRight(false), 1500);
-  //   }
-  //   return () => clearTimeout(timer);
-  // }, [current]);
 
   // Основна функція логіки при кліках в грі
 
@@ -171,7 +146,7 @@ const TicTacToeGame = ({ settings, onEvent }) => {
 
       // невелика додаткова пауза (щоб анімація/пульс стартували)
       setTimeout(() => {
-        setShowLoading(true); // тут вже з'явиться overlay після того, як підсвітка в DOM
+        // setShowLoading(true); // тут вже з'явиться overlay після того, як підсвітка в DOM
         // Показуємо проміжну анімацію/екран (конфеті тощо)
         setWinner("X");
       }, 8000);
@@ -184,7 +159,6 @@ const TicTacToeGame = ({ settings, onEvent }) => {
       // }, 6000);
 
       // Повідомлення + звук
-      toast.success("Congratulations on your victory! 🏆");
       if (winAudioRef.current) {
         winAudioRef.current.currentTime = 0;
         winAudioRef.current.play().catch(() => {});
@@ -198,7 +172,7 @@ const TicTacToeGame = ({ settings, onEvent }) => {
       setTimeout(() => {
         setIsWinning(false); // прибираю ефект підсвітки 3 х клітин
         setWinningCells([]); // прибираю ефект підсвітки
-        setShowLoading(false);
+        // setShowLoading(false);
         setShowSmile(false);
         setshowLoadingFirst(false);
         setWinner("X");
@@ -209,7 +183,7 @@ const TicTacToeGame = ({ settings, onEvent }) => {
       const a = new Audio(endDrowSound);
       a.play().catch(() => {});
 
-      toast.success("The opponent won. 😞");
+      // toast.success("The opponent won. 😞");
       setTimeout(() => {
         navigate("/result", {
           state: { winner: "O", player1: "You", player2: "PLAYER 2" },
@@ -221,7 +195,7 @@ const TicTacToeGame = ({ settings, onEvent }) => {
       const a = new Audio(endDrowSound);
       a.play().catch(() => {});
 
-      toast.success("You have a draw!");
+      // toast.success("You have a draw!");
       setTimeout(() => {
         navigate("/result", {
           state: { winner: "Draw", player1: "You", player2: "PLAYER 2" },
@@ -282,17 +256,6 @@ const TicTacToeGame = ({ settings, onEvent }) => {
 
   return (
     <main className={css.wrapper}>
-      <ToastContainer
-        position="top-right"
-        autoClose={5000} // 3 seconds
-        hideProgressBar={false}
-        newestOnTop={true}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-      />
       <div className={css.playerLeftBlokLeft}>
         {showSmile && <StarkHeroEffect onRestart={() => {}} />}
 
@@ -350,7 +313,7 @@ const TicTacToeGame = ({ settings, onEvent }) => {
 
         {winner === "X" && <WinModal onRestart={handleRestartGame} />}
 
-        {showLoading && <WinModalMidle onRestart={() => {}} />}
+        {/* {showLoading && <WinModalMidle onRestart={() => {}} />} */}
         {showLoadingFirst && <WinModalFirst onRestart={() => {}} />}
       </section>
 

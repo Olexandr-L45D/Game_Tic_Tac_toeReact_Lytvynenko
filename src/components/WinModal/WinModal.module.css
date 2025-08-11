@@ -4,8 +4,8 @@
   position: fixed;
   top: 5px;
   left: 0;
-  width: 835px;
-  height: 375px;
+  width: 840px;
+  height: 370px;
   z-index: 1000;
   display: flex;
   justify-content: center;
@@ -65,7 +65,7 @@
   justify-content: center; /* вирівнюємо горизонтально по центру */
   gap: 8px; /* відстань між текстом і стрілкою */
 
-  margin-top: 0px;
+  margin-top: -12px;
   width: 200px;
   height: 56px;
   border-radius: 28px;
@@ -133,11 +133,36 @@
 }
 
 .rectangle {
-  width: 12px;
+  width: 15px;
   height: 6px;
   border-radius: 2px;
 }
 
+.triangle {
+  width: 8px;
+  height: 8px;
+  border-left: 2px solid transparent;
+  border-right: 2px solid transparent;
+  border-bottom: 2px solid orange;
+}
+
+.star {
+  width: 6px;
+  height: 6px;
+  background: yellow;
+  clip-path: polygon(
+    50% 0%,
+    61% 35%,
+    98% 35%,
+    68% 57%,
+    79% 91%,
+    50% 70%,
+    21% 91%,
+    32% 57%,
+    2% 35%,
+    39% 35%
+  );
+}
 /* Анімація падіння */
 @keyframes fallConfetti {
   0% {

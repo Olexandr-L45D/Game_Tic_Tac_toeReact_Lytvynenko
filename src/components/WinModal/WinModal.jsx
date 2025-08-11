@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 import css from "./WinModal.module.css";
 import restartSound from "/src/assets/audio/mixKids.mp3.wav";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import playIcon from "/src/assets/emages/play.png";
 
 export const WinModal = ({ onRestart }) => {
   const [showButton, setShowButton] = useState(false); // ✅ початково приховано
@@ -19,9 +18,6 @@ export const WinModal = ({ onRestart }) => {
   const handleGameFinall = () => {
     const audio = new Audio(restartSound);
     audio.play().catch(e => console.warn("Autoplay blocked:", e));
-    toast.success(
-      "Congratulations on your victory! 🏆 Fantastic win! 🥳 Every victory brings you closer to greatness.Keep having fun! 😄🎈"
-    );
 
     setTimeout(() => {
       onRestart();
@@ -51,24 +47,13 @@ export const WinModal = ({ onRestart }) => {
     const color = colors[Math.floor(Math.random() * colors.length)];
 
     // Тип фігури: circle, square, rectangle
-    const shapes = ["circle", "square", "rectangle"];
+    const shapes = ["circle", "square", "rectangle", "triangle", "star"];
     const shape = shapes[Math.floor(Math.random() * shapes.length)];
 
     return { left, duration, delay, color, shape };
   });
   return (
     <section className={css.container}>
-      <ToastContainer
-        position="top-right"
-        autoClose={7000} // 7 seconds
-        hideProgressBar={false}
-        newestOnTop={true}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-      />
       <div>
         {confettis.map(({ left, duration, delay, color, shape }, i) => (
           <span
@@ -93,10 +78,11 @@ export const WinModal = ({ onRestart }) => {
           type="button"
         >
           Play Game Again
-          <img src="/src/assets/emages/play.png" alt="" className={css.arrow} />
+          <img src={playIcon} alt="" className={css.arrow} />
         </button>
       </div>
-      {/* <button onClick={handleGameFinall} className={css.button}>Play Game Again</button> */}
     </section>
   );
 };
+
+/* <button onClick={handleGameFinall} className={css.button}>Play Game Again</button> */

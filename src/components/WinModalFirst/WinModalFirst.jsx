@@ -29,7 +29,7 @@ export const WinModalFirst = () => {
     const color = colors[Math.floor(Math.random() * colors.length)];
 
     // Тип фігури: circle, square, rectangle
-    const shapes = ["circle", "square", "rectangle"];
+    const shapes = ["circle", "square", "rectangle", "triangle", "star"];
     const shape = shapes[Math.floor(Math.random() * shapes.length)];
 
     return { left, duration, delay, color, shape };
