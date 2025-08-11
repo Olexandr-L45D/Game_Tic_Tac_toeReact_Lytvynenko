@@ -22,7 +22,6 @@
   align-items: center;
   border-radius: 50%; /* кругла форма */
   transform: translateY(40px); /* зміщення вниз */
-  /* background: url("/src/assets/emages/endSong.mp3"); */
 }
 
 .card {
@@ -85,23 +84,4 @@
   margin: 5px;
   margin-bottom: 0px;
   padding: 0px;
-}
-
-.them_defaul {
-  background-image: url("/src/assets/emages/MaskHomeCentre.png"),
-    url("/src/assets/audio/mixKids.mp3.wav"),
-    url("/src/assets/audio/successMixkit.mp3.wav"),
-    url("/src/assets/audio/endSong.mp3.wav"),
-    url("/src/assets/audio/endSong.mp3.wav"),
-    url("/src/assets/audio/clikcs.mp3.wav"),
-    url("/src/assets/emages/BlueGirl.png"),
-    url("/src/assets/emages/starcPhon.png"),
-    url("/src/assets/emages/GroupFone3.png"),
-    url("/src/assets/emages/starcPhon.png"),
-    url("/src/assets/audio/sunTuIX.mp3.wav"),
-    url("/src/assets/emages/GroupFone3.png"),
-    url("/src/assets/emages/StarksHeroYour.png"),
-    url("/src/assets/emages/StarSmaile.png"),
-    url("/src/assets/audio/sunTuNull.mp3.wav");
-  background-size: cover;
 }

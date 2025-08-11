@@ -9,7 +9,7 @@ import "react-toastify/dist/ReactToastify.css";
 const GameSettingsModal = ({ onClose, onStart }) => {
   const [theme, setTheme] = useState("rose");
   const [age, setAge] = useState(5);
-  const [language, setLanguage] = useState("uk");
+  const [language, setLanguage] = useState("en");
   const navigate = useNavigate();
 
   const handleStart = () => {

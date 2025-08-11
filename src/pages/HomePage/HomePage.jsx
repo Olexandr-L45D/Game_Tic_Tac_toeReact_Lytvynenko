@@ -2,9 +2,10 @@ import { useNavigate } from "react-router-dom";
 import css from "./HomePage.module.css";
 import startSound from "/src/assets/audio/successMixkit.mp3.wav";
 import { useState } from "react";
-import Loader from "../../components/Loader/Loader";
+// import Loader from "../../components/Loader/Loader";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import LoaderBaground from "../../components/LoaderBaground/LoaderBaground";
 
 export default function HomePage() {
   const navigate = useNavigate();
@@ -33,8 +34,14 @@ export default function HomePage() {
         draggable
         pauseOnHover
       />
+      {/*       
+      <div className={css.card}>
+        <div className={css.titleGlow}></div>
+        <div onClick={handleGameStart} className={css.gameStart}></div>
+      </div> */}
+
       {loading ? (
-        <Loader />
+        <LoaderBaground />
       ) : (
         <div className={css.card}>
           <div className={css.titleGlow}></div>

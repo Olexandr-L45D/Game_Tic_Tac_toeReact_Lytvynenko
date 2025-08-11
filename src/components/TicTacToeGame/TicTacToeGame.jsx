@@ -15,8 +15,8 @@ import winSound from "/src/assets/audio/finalliVin.mp3.wav";
 import HeroIntro from "../HeroIntro/HeroIntro";
 import HeroEffect from "../HeroEffect/HeroEffect";
 import StarkHeroEffect from "../StarkHeroEffect/StarkHeroEffect";
-// import WinLineEffect from "../WinLineEffect/WinLineEffect";
-// import GroupGreeting from "/src/assets/emages/GroupFone3.png";
+import endDrowSound from "/src/assets/audio/endDrowGame.mp3.wav";
+import { WinModalFirst } from "../WinModalFirst/WinModalFirst";
 
 const iconComponents = {
   rose: {
@@ -43,13 +43,15 @@ const TicTacToeGame = ({ settings, onEvent }) => {
   const [winner, setWinner] = useState(null);
   const navigate = useNavigate();
   const [animateIntro, setAnimateIntro] = useState(true);
+  const [showLoadingFirst, setshowLoadingFirst] = useState(false);
   const [showLoading, setShowLoading] = useState(false);
-  // Анімації ходів
+  // Анімації ходів showLoadingFirst
   const [animateLeft, setAnimateLeft] = useState(false);
   const [animateRight, setAnimateRight] = useState(false);
   const [showHeroEffect, setShowHeroEffect] = useState(false);
   const [showHeroEffectRight, setShowHeroEffectRight] = useState(false);
-  // const [showStarkSmailEffect, setShowStarkSmailEffect] = useState(false);
+  // Новий стейт для зберігання індексів виграшних клітин щоб відобразити світіння 3 зображень героя одночасно
+  const [winningCells, setWinningCells] = useState([]);
   // const [winLine, setWinLine] = useState([]);
   const moveSoundX = useRef(null);
   const moveSoundO = useRef(null);
@@ -57,17 +59,20 @@ const TicTacToeGame = ({ settings, onEvent }) => {
   const startAudioRef = useRef(null);
   const winAudioRef = useRef(null);
   const [showSmile, setShowSmile] = useState(false);
+  const [isVisible, setIsWinning] = useState(false);
 
   useEffect(() => {
     moveSoundX.current = new Audio("/src/assets/audio/sunTuIX.mp3.wav");
     moveSoundO.current = new Audio("/src/assets/audio/sunTuNull.mp3.wav");
     clickSoundRef.current = new Audio("/src/assets/audio/allclicks.mp3.wav");
     startAudioRef.current = new Audio("/src/assets/audio/clikcs.mp3.wav");
-    winAudioRef.current = new Audio("/src/assets/audio/finalliVin.mp3.wav");
+    winAudioRef.current = new Audio(
+      "/src/assets/audio/mixkitFinnaliViner.mp3.wav"
+    );
   }, []);
   // Обробка старту гри (стартовий ефект)
   useEffect(() => {
-    setShowHeroEffect(true);
+    // setShowHeroEffect(true);
   }, []);
   // Відтворення стартового звуку після першого кліку на сторінці (HomePage)
   useEffect(() => {
@@ -84,7 +89,7 @@ const TicTacToeGame = ({ settings, onEvent }) => {
   // Анімація та звук при зміні current
   useEffect(() => {
     let timer;
-    if (current === "X") {
+    if (current === "O") {
       setShowHeroEffectRight(true);
       setAnimateLeft(true);
       setAnimateRight(false);
@@ -93,7 +98,7 @@ const TicTacToeGame = ({ settings, onEvent }) => {
         moveSoundX.current.play().catch(() => {});
       }
       timer = setTimeout(() => setAnimateLeft(false), 2000);
-    } else if (current === "O") {
+    } else if (current === "X") {
       setShowHeroEffect(true);
       setAnimateRight(true);
       setAnimateLeft(false);
@@ -105,41 +110,78 @@ const TicTacToeGame = ({ settings, onEvent }) => {
     }
     return () => clearTimeout(timer);
   }, [current]);
+  // useEffect(() => {
+  //   let timer; current === "O"
+  //   if (current === "X") {
+  //     setShowHeroEffectRight(true);
+  //     setAnimateLeft(true);
+  //     setAnimateRight(false);
+  //     if (moveSoundX.current) {
+  //       moveSoundX.current.currentTime = 0;
+  //       moveSoundX.current.play().catch(() => {});
+  //     }
+  //     timer = setTimeout(() => setAnimateLeft(false), 1500);
+  //   } else if (current === "O") {
+  //     setShowHeroEffect(true);
+  //     setAnimateRight(true);
+  //     setAnimateLeft(false);
+  //     if (moveSoundO.current) {
+  //       moveSoundO.current.currentTime = 0;
+  //       moveSoundO.current.play().catch(() => {});
+  //     }
+  //     timer = setTimeout(() => setAnimateRight(false), 1500);
+  //   }
+  //   return () => clearTimeout(timer);
+  // }, [current]);
 
   // Основна функція логіки при кліках в грі
-  const handleClick = i => {
-    if (board[i] || winner) return;
 
+  const handleClick = i => {
+    if (board[i] || winner || isVisible) return;
     const next = [...board];
     next[i] = current;
     const result = checkWin(next);
-
     // Відтворення звуку кліку
     if (clickSoundRef.current) {
       clickSoundRef.current.currentTime = 0;
       clickSoundRef.current.play().catch(() => {});
     }
-
     setBoard(next);
-
     // Якщо немає переможця — міняємо хід і виходимо
     if (!result) {
       setCurrent(current === "X" ? "O" : "X");
       return;
     }
-
     // Маємо результат — зберігаємо гравця (але winner встановимо пізніше для X, після loading)
     const player = result.player;
 
     if (player === "X") {
-      // Показуємо проміжну анімацію а саме смайлик з підсвіткою над героєм = Х зліва
+      //Це нове! Зберігаємо індекси клітин, які виграли
       setShowSmile(true);
-      // Показуємо проміжну анімацію/екран (конфеті тощо)
-      // setShowLoading(true);
+      setIsWinning(true); // Встановлюємо, що зараз період перемоги (підсвітка, анімації)
+      setWinningCells(result.line || []); // result.line — це масив індексів з checkWin (виграшна комбінація з 3 х клітин)
+      // Показуємо проміжну анімацію а саме смайлик з підсвіткою над героєм = Х зліва
+      // 3) даємо браузеру відмальовувати (за потреби можна додати короткий timeout)
+      requestAnimationFrame(() => {
+        // невелика додаткова пауза (щоб анімація/пульс стартували)
+        setTimeout(() => {
+          setshowLoadingFirst(true);
+        }, 4000);
+      });
+
+      // невелика додаткова пауза (щоб анімація/пульс стартували)
       setTimeout(() => {
-        setShowLoading(true);
+        setShowLoading(true); // тут вже з'явиться overlay після того, як підсвітка в DOM
+        // Показуємо проміжну анімацію/екран (конфеті тощо)
         setWinner("X");
-      }, 3000);
+      }, 8000);
+
+      // Показуємо проміжну анімацію/екран (конфеті тощо)
+      //без використання =  requestAnimationFrame(() => {
+      // setTimeout(() => {
+      //   setShowLoading(true);
+      //   setWinner("X");
+      // }, 6000);
 
       // Повідомлення + звук
       toast.success("Congratulations on your victory! 🏆");
@@ -152,14 +194,21 @@ const TicTacToeGame = ({ settings, onEvent }) => {
         a.play().catch(() => {});
       }
 
-      // Після 2 секунд ховаємо loading і встановлюємо winner = "X" (це викликає показ WinModal)
+      // Після 9 секунд ховаємо loading і встановлюємо winner = "X" (це викликає показ WinModal)
       setTimeout(() => {
+        setIsWinning(false); // прибираю ефект підсвітки 3 х клітин
+        setWinningCells([]); // прибираю ефект підсвітки
         setShowLoading(false);
         setShowSmile(false);
+        setshowLoadingFirst(false);
         setWinner("X");
-      }, 6000);
+      }, 12000);
     } else if (player === "O") {
       // Противник виграв — робимо коротку паузу і переходимо на сторінку результату
+      // озвучка коли Противник виграв
+      const a = new Audio(endDrowSound);
+      a.play().catch(() => {});
+
       toast.success("The opponent won. 😞");
       setTimeout(() => {
         navigate("/result", {
@@ -168,6 +217,10 @@ const TicTacToeGame = ({ settings, onEvent }) => {
       }, 1500);
     } else if (player === "Draw") {
       // Нічия — переходимо на сторінку результату (теж з невеликою затримкою)
+      // озвучка коли нічья
+      const a = new Audio(endDrowSound);
+      a.play().catch(() => {});
+
       toast.success("You have a draw!");
       setTimeout(() => {
         navigate("/result", {
@@ -279,7 +332,13 @@ const TicTacToeGame = ({ settings, onEvent }) => {
             {board.map((cell, i) => (
               <button
                 key={i}
-                className={`${css.cell} ${css["cell--" + theme]}`}
+                className={`${css.cell} ${css["cell--" + theme]} ${
+                  winningCells.includes(i)
+                    ? isVisible || winner === "X"
+                      ? css.visible + " " + css.winner // показуємо виграшну з підсвіткою
+                      : css.hidden // виграшна, але ще прихована
+                    : "" // звичайна клітинка без ефекту
+                }`}
                 onClick={() => handleClick(i)}
                 aria-label={`Cell ${i + 1}`}
               >
@@ -292,7 +351,9 @@ const TicTacToeGame = ({ settings, onEvent }) => {
         {winner === "X" && <WinModal onRestart={handleRestartGame} />}
 
         {showLoading && <WinModalMidle onRestart={() => {}} />}
+        {showLoadingFirst && <WinModalFirst onRestart={() => {}} />}
       </section>
+
       <div className={css.playerLeftBlokRight}>
         {showHeroEffectRight && (
           <HeroIntro
@@ -311,7 +372,7 @@ const TicTacToeGame = ({ settings, onEvent }) => {
           }`}
         >
           <div
-            className={`${current === "0" ? css.glowingPlayer : ""} ${
+            className={`${current === "O" ? css.glowingPlayer : ""} ${
               animateRight ? css.animateHeroMove : ""
             } ${css.heroIconWrapper}`}
           >
@@ -325,6 +386,41 @@ const TicTacToeGame = ({ settings, onEvent }) => {
 };
 
 export default TicTacToeGame;
+
+// variancy to render in DOM
+
+// <section className={css.gridWrapper}>
+//   <div className={css.gridOverlay}></div>
+//   {isWinning ? (
+//     <div className={css.grid}>
+//       {board.map((cell, i) => (
+//         <button
+//           key={i}
+//           className={`${css.cell} ${css["cell--" + theme]} ${
+//             winningCells.includes(i) ? css.winner : ""
+//           }`}
+//           onClick={() => handleClick(i)}
+//           aria-label={`Cell ${i + 1}`}
+//         >
+//           {cell ? getIconComponent(cell) : null}
+//         </button>
+//       ))}
+//     </div>
+//   ) : (
+//     <div className={css.grid}>
+//       {board.map((cell, i) => (
+//         <button
+//           key={i}
+//           className={`${css.cell} ${css["cell--" + theme]}`}
+//           onClick={() => handleClick(i)}
+//           aria-label={`Cell ${i + 1}`}
+//         >
+//           {cell ? getIconComponent(cell) : null}
+//         </button>
+//       ))}
+//     </div>
+//   )}
+// </section>;
 
 // useEffect(() => {
 //   const timer = setTimeout(() => {

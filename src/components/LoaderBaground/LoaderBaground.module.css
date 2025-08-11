@@ -1,0 +1,15 @@
+.loaderContainer {
+  width: 840px;
+  height: 390px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  justify-content: center;
+  align-items: center;
+  background: url("/src/assets/emages/FrameCentreLine_bagr.png") center/cover
+    no-repeat;
+  /* z-index: 9999; */
+  /* перекриває інші елементи */
+  /* pointer-events: auto; */
+  /* дозволяє блокувати кліки */
+}

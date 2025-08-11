@@ -1,7 +1,7 @@
-import css from "./WinModalMidle.module.css";
+import css from "./WinModalFirst.module.css";
 import finSound from "/src/assets/audio/mixkitFinnaliViner.mp3.wav";
 
-export const WinModalMidle = () => {
+export const WinModalFirst = () => {
   const audio = new Audio(finSound);
   audio.play().catch(e => console.warn("Autoplay blocked:", e));
 
