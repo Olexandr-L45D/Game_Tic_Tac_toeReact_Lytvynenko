@@ -9,18 +9,9 @@
   align-items: center;
   text-align: center;
   animation: heroIntroMove 1.8s ease-out forwards;
-  /* background-image: url("/src/assets/emages/StarksHeroYour.png"); */
   background-repeat: no-repeat;
   background-position: center;
 }
-.heroImageWrapper {
-  position: relative;
-  width: 60px;
-  height: 60px;
-  margin-top: 0;
-  filter: drop-shadow(0 0 6px #fff8d6);
-}
-
 .heroTitle {
   margin-top: 20px;
   margin-bottom: 1px;
@@ -43,8 +34,55 @@
   color: #fff;
   z-index: 3; /* щоб текст був над усім */
 }
+/* .heroImageWrapper {
+  position: relative;
+  width: 70px;
+  height: 70px;
+  margin-top: 0;
+  background-image: url("/src/assets/emages/TitleBagrPhone.png"); 
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  background: transparent;
+  border: none;
+} */
+
+.heroImageWrapper {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center; /* центруємо вміст */
+}
+
+.heroImageWrapper::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 120px; /* розмір світіння */
+  height: 120px;
+  transform: translate(-50%, -50%);
+  background: url("/src/assets/emages/TitleBagrPhone.png") center/cover
+    no-repeat;
+  border-radius: 50%;
+  z-index: 1; /* під картинкою */
+}
 
 .heroImage {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  z-index: 2; /* поверх світіння */
+  animation: heroPulse 1.5s infinite ease-in-out;
+}
+
+/* .heroImage {
   width: 60px;
   height: 60px;
   opacity: 1;
@@ -52,7 +90,7 @@
   border-radius: 50%;
   z-index: 2;
   animation: heroPulse 1.5s infinite ease-in-out;
-}
+} */
 .heroIcon {
   font-size: 60px; /* для React-іконок */
   line-height: 1;
@@ -168,11 +206,13 @@
   animation-delay: 2s;
 }
 
-/* Анімація з появи з 20px вище */
+/* Анімація з появи з 40px нижче */
 @keyframes heroIntroMove {
   from {
     opacity: 0;
-    transform: translateY(-20px) scale(0.9);
+    transform: translateY(30px) scale(0.9);
+    /* ↑ ЦЕ місце регулює відстань старту героя.
+       Збільшуєш значення px → він починає нижче і піднімається далі. */
   }
   to {
     opacity: 1;

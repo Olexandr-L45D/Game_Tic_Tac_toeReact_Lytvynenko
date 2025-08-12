@@ -28,7 +28,7 @@ export const WinModalFirst = () => {
     ];
     const color = colors[Math.floor(Math.random() * colors.length)];
 
-    // Тип фігури: circle, square, rectangle
+    // Тип фігури: circle, square, rectangle додав трикутник та зірки
     const shapes = ["circle", "square", "rectangle", "triangle", "star"];
     const shape = shapes[Math.floor(Math.random() * shapes.length)];
 

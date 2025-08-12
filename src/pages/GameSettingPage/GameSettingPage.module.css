@@ -22,8 +22,11 @@
   pointer-events: none;
   z-index: 0;
 }
+.gameWrapper {
+  transition: transform 0.8s ease-in;
+  will-change: transform;
+}
 
-/* brightness(1.8) — збільшує яскравість зірочок.
-contrast(1.2) — покращує чіткість і видимість дрібних зірок.
-drop-shadow(...) — додає ефект світіння навколо кожної зірочки (імітація розсіювання).
-mix-blend-mode: screen — дозволяє "просвічуванню" з фоном, роблячи ефект м’яким. */
+.slideDown {
+  transform: translateY(100%);
+}

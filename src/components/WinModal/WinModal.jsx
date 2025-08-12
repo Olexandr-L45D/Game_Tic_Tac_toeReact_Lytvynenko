@@ -68,6 +68,7 @@ export const WinModal = ({ onRestart }) => {
           />
         ))}
       </div>
+
       <div className={css.sectionBlok}>
         <h1 className={css.title}>Congratulations!</h1>
         <button

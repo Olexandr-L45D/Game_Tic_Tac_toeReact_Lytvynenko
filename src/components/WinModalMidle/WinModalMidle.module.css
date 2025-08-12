@@ -1,7 +1,7 @@
 /* WinModal.module.css */
 .loadingWrapper {
   position: fixed;
-  top: 5px;
+  top: 0;
   left: 0;
   width: 840px;
   height: 380px;

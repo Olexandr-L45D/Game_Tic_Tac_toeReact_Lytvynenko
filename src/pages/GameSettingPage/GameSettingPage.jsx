@@ -5,6 +5,7 @@ import GameSettingsModal from "../../components/GameSettingsModal/GameSettingsMo
 import GameStatusLoading from "../../components/GameStatusLoading/GameStatusLoading";
 import LoadingScreen from "../../components/LoadingScreen/LoadingScreen";
 import Loader from "../../components/Loader/Loader";
+// import { WinModalFirst } from "../../components/WinModalFirst/WinModalFirst";
 // import { ToastContainer, toast } from "react-toastify";
 // import "react-toastify/dist/ReactToastify.css";
 
@@ -16,6 +17,7 @@ const GameSettingPage = () => {
   const [startGame, setStartGame] = useState(false);
   const [showGlobalLoader, setShowGlobalLoader] = useState(false); // глобальний Loader
 
+  // Bace function
   const handleStart = data => {
     setShowModal(false);
     setShowGlobalLoader(true); // глобальний Loader
@@ -64,6 +66,7 @@ const GameSettingPage = () => {
       )}
       {/* Глобальний Loader */}
       {showGlobalLoader && <Loader />}
+
       {startGame && settings && (
         <TicTacToeGame
           name="Olexandr"
@@ -77,3 +80,32 @@ const GameSettingPage = () => {
 };
 
 export default GameSettingPage;
+
+//  const [isGameOver, setIsGameOver] = useState(false);
+//  const [isAnimationFinished, setIsAnimationFinished] = useState(false);
+
+// const handleGameEnd = () => {
+//   setIsGameOver(true);
+//   setTimeout(() => {
+//     setIsAnimationFinished(true);
+//   }, 2000); // має співпадати з CSS transition
+// };
+
+// {
+//   startGame && settings && !isAnimationFinished && (
+//     <div
+//       className={`${css.gameWrapper} ${isGameOver ? css.slideDown : ""}`}
+//     >
+//       <TicTacToeGame
+//         name="Olexandr"
+//         age={settings.age}
+//         language={settings.language}
+//         settings={settings}
+//         onGameEnd={handleGameEnd} // викликається при завершенні гри
+//       />
+//     </div>
+//   );
+// }
+//
+
+/* {isAnimationFinished && <WinModalFirst />} */

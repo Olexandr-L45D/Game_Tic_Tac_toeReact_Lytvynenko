@@ -1,3 +1,28 @@
+/*Загальний  Контейнер гри */
+.gameWrapper {
+  transition: transform 1s ease, opacity 1s ease;
+}
+
+/* Клас анімації зсуву вниз */
+.slideDown {
+  transform: translateY(50vh); /*100 h = рух на весь екран вниз */
+  opacity: 0; /* плавне зникнення */
+}
+
+/*  Щоб змінити швидкість — редагуй 1s у transition вище */
+/*  Щоб змінити відстань — редагуй 100vh на потрібне значення */
+
+.containerGame {
+  position: relative;
+  padding: 0px;
+  margin: 0px;
+  width: 840px;
+  height: 380px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
 .wrapper {
   display: flex;
   flex-direction: row;
@@ -9,15 +34,16 @@
   margin-bottom: 25px;
   margin-left: -40px;
 }
+/* 
 @media (max-width: 768px) {
   .wrapper {
-    margin-top: 20px; /* або 0px, якщо треба щільно */
-    margin-bottom: 30px; /* як ти просив */
+    margin-top: 20px; 
+    margin-bottom: 30px; 
   }
 
   .playerLeftBlokLeft,
   .playerRight {
-    height: 200px; /* за потреби можна зменшити */
+    height: 200px; 
   }
 
   .gridWrapper {
@@ -44,7 +70,7 @@
     width: 60px;
     height: 60px;
   }
-}
+} */
 
 .playerLeftBlokLeft {
   position: relative;
@@ -218,8 +244,15 @@
   z-index: 4; /* вище за псевдо-елемент */
 }
 
-/* ---- псевдо для виграшного фону (завантажуємо макетний бекграунд) ---- */
+/* new style */
 .cell.winner::before {
+  margin-top: -25px;
+  margin-left: -25px;
+  width: 110px;
+  height: 110px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   content: "";
   position: absolute;
   inset: 0; /* top:0; right:0; bottom:0; left:0; */
@@ -231,29 +264,56 @@
   transform: scale(0.98);
   transition: opacity 280ms ease, transform 280ms ease;
   pointer-events: none; /* не заважає клікам */
-  z-index: 1; /* під іконкою */
+  z-index: 3; /* під іконкою */
 }
 
+/* inset: 0; = top:0; right:0; bottom:0; left:0; */
 /* коли потрібно показати підсвітку — керуємо псевдо-елементом */
+/* 
+.cell.winner.visible::before {
+  opacity: 1;
+  transform: scale(1);
+} */
+
+/* якщо потрібно явно сховати — переконайся, що ховаємо тільки ::before */
+/* (не ставити opacity:0 на сам .cell) */
+
+/* .cell.winner.hidden::before {
+  opacity: 0;
+  transform: scale(0.98);
+} */
+
+/* Приховуємо тільки фон-підсвітку, але не саму іконку */
+.cell.winner.hidden::before {
+  opacity: 0;
+  transform: scale(0.98);
+}
 .cell.winner.visible::before {
   opacity: 1;
   transform: scale(1);
 }
+/* Після появи одразу пульсує */
+@keyframes winnerPulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
 
-/* якщо потрібно явно сховати — переконайся, що ховаємо тільки ::before */
-/* (не ставити opacity:0 на сам .cell) */
-.cell.winner.hidden::before {
-  opacity: 0;
-  transform: scale(0.98);
+/* Після появи одразу пульсує */
+.cell.winner.visible::before {
+  animation: winnerPulse 1.2s ease-in-out infinite;
 }
 
 .icon-img {
   width: 60px;
   height: 60px;
-  border-radius: 50%; /* робить саме зображення круглим */
+  border-radius: 50%;
 }
-/* add more width: 80px;
-  height: 80px; to Hero */
+
 .icon,
 .icon-img,
 .cell svg {
@@ -392,4 +452,46 @@
       0 0 60px 30px #f5af19;
     transform: scale(1);
   }
+}
+.buttonSection {
+  position: absolute;
+  right: 30px;
+  bottom: 150px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: linear-gradient(180deg, #c780ff 0%, #7500d1 100%);
+  display: flex; /* для центрування кнопки всередині */
+  align-items: center;
+  justify-content: center;
+}
+
+.button {
+  width: 100%; /* тепер кнопка займає всю секцію */
+  height: 100%;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  /* Анімація появи */
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(6px) scale(0.98);
+  transition: opacity 300ms ease, transform 300ms ease;
+  visibility: hidden;
+}
+
+.visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0) scale(1);
+  visibility: visible;
+}
+
+.arrow {
+  width: 24px;
+  height: 24px;
 }

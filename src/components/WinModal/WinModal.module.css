@@ -47,15 +47,9 @@
   letter-spacing: 0;
   text-align: center;
   color: #fafafa;
-
   background: url("/src/assets/emages/TitleBagrPhone.png") center center
     no-repeat;
   background-size: contain; /* фон підлаштується під розмір блоку */
-
-  /* Якщо хочеш, щоб фон сяяв і було відчуття підсвітки: */
-  /* filter: drop-shadow(0 0 8px #77aaff); */
-  /* або можна додати blur, але не сильно: */
-  /* backdrop-filter: blur(2px); */
 }
 
 .button {
@@ -65,7 +59,7 @@
   justify-content: center; /* вирівнюємо горизонтально по центру */
   gap: 8px; /* відстань між текстом і стрілкою */
 
-  margin-top: -12px;
+  margin-top: -20px;
   width: 200px;
   height: 56px;
   border-radius: 28px;
