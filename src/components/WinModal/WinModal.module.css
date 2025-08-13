@@ -6,7 +6,6 @@
   left: 0;
   width: 840px;
   height: 370px;
-  z-index: 1000;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -14,6 +13,8 @@
   /* no-repeat; */
   background: url("/src/assets/emages/MaskMountains.png") center/cover no-repeat;
   margin-left: -20px;
+  /* z-index: 1000; */
+  z-index: 9999; /* гарантовано поверх всіх інших */
 }
 
 .win-modal__content {
@@ -59,7 +60,7 @@
   justify-content: center; /* вирівнюємо горизонтально по центру */
   gap: 8px; /* відстань між текстом і стрілкою */
 
-  margin-top: -20px;
+  margin-top: -60px;
   width: 200px;
   height: 56px;
   border-radius: 28px;

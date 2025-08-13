@@ -17,7 +17,7 @@
   position: absolute;
   inset: 0;
   background: url("/src/assets/emages/MaskStars.png") center/cover no-repeat;
-  mix-blend-mode: screen; /* Або lighten */
+  mix-blend-mode: screen;
   opacity: 1;
   pointer-events: none;
   z-index: 0;
