@@ -8,15 +8,18 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background: url("/src/assets/emages/MaskDark.png") center/cover no-repeat,
-    url("/src/assets/emages/MaskMountains.png") center/cover no-repeat;
+  background: url("/src/assets/emages/MaskDark.png") calc(50% - 20px)
+      center/cover no-repeat,
+    url("/src/assets/emages/MaskMountains.png") calc(50% - 20px) center/cover
+      no-repeat;
   box-sizing: border-box;
 }
 .container::after {
   content: "";
   position: absolute;
   inset: 0;
-  background: url("/src/assets/emages/MaskStars.png") center/cover no-repeat;
+  background: url("/src/assets/emages/MaskStars.png") calc(50% - 20px)
+    center/cover no-repeat;
   mix-blend-mode: screen;
   opacity: 1;
   pointer-events: none;

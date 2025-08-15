@@ -1,0 +1,6 @@
+{
+  "appId": "com.example.tictactoe",
+  "appName": "TicTacToeGame",
+  "webDir": "dist",
+  "bundledWebRuntime": false
+}

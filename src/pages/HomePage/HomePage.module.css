@@ -3,6 +3,7 @@
   position: fixed;
   top: 0;
   left: 0;
+  right: 10;
   width: 820px;
   height: 370px;
   display: flex;

@@ -13,9 +13,12 @@ export default defineConfig({
   resolve: {
     alias: {
       src: path.resolve(__dirname, "./src"),
+      // androidSdk: path.resolve("/android"),
     },
   },
   build: {
     sourcemap: true,
   },
 });
+
+// C:/Users/dream machines/AppData/Local/Android/Sdk = міняю на мій шлях до АНДРОЇД СТУДІО

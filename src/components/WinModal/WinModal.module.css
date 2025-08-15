@@ -2,7 +2,7 @@
 
 .container {
   position: fixed;
-  top: 5px;
+  top: 0;
   left: 0;
   width: 840px;
   height: 370px;
@@ -60,9 +60,9 @@
   justify-content: center; /* вирівнюємо горизонтально по центру */
   gap: 8px; /* відстань між текстом і стрілкою */
 
-  margin-top: -60px;
+  margin-top: -70px;
   width: 200px;
-  height: 56px;
+  height: 60px;
   border-radius: 28px;
 
   font-family: Fredoka;

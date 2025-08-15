@@ -6,10 +6,11 @@
   left: 0;
   justify-content: center;
   align-items: center;
-  background: url("/src/assets/emages/FrameCentreLine_bagr.png") center/cover
-    no-repeat;
-  /* z-index: 9999; */
-  /* перекриває інші елементи */
-  /* pointer-events: auto; */
-  /* дозволяє блокувати кліки */
+  background: url("/src/assets/emages/FrameCentreLine_bagr.png")
+    calc(50% - 20px) center/cover no-repeat;
 }
+
+/* z-index: 9999; */
+/* перекриває інші елементи */
+/* pointer-events: auto; */
+/* дозволяє блокувати кліки */

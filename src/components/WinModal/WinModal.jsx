@@ -4,7 +4,7 @@ import restartSound from "/src/assets/audio/mixKids.mp3.wav";
 import playIcon from "/src/assets/emages/play.png";
 
 export const WinModal = ({ onRestart }) => {
-  const [showButton, setShowButton] = useState(false); // ✅ початково приховано
+  const [showButton, setShowButton] = useState(false);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -46,7 +46,7 @@ export const WinModal = ({ onRestart }) => {
     ];
     const color = colors[Math.floor(Math.random() * colors.length)];
 
-    // Тип фігури: circle, square, rectangle
+    // 5 фігур
     const shapes = ["circle", "square", "rectangle", "triangle", "star"];
     const shape = shapes[Math.floor(Math.random() * shapes.length)];
 
@@ -85,5 +85,3 @@ export const WinModal = ({ onRestart }) => {
     </section>
   );
 };
-
-/* <button onClick={handleGameFinall} className={css.button}>Play Game Again</button> */

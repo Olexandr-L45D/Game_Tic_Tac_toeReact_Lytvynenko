@@ -5,9 +5,6 @@ import GameSettingsModal from "../../components/GameSettingsModal/GameSettingsMo
 import GameStatusLoading from "../../components/GameStatusLoading/GameStatusLoading";
 import LoadingScreen from "../../components/LoadingScreen/LoadingScreen";
 import Loader from "../../components/Loader/Loader";
-// import { WinModalFirst } from "../../components/WinModalFirst/WinModalFirst";
-// import { ToastContainer, toast } from "react-toastify";
-// import "react-toastify/dist/ReactToastify.css";
 
 const GameSettingPage = () => {
   const [settings, setSettings] = useState(null);
@@ -33,7 +30,7 @@ const GameSettingPage = () => {
 
         // Дати гравцеві побачити статус і потім старт гри
         setTimeout(() => {
-          // toast.success("Have a nice game!");
+         
           setShowStatusLoading(true);
           setSettings(data);
           setStartGame(true);
@@ -44,17 +41,7 @@ const GameSettingPage = () => {
 
   return (
     <section className={css.container}>
-      {/* <ToastContainer
-        position="top-right"
-        autoClose={5000} // 3 seconds
-        hideProgressBar={false}
-        newestOnTop={true}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-      /> */}
+      
       {showLoading && <LoadingScreen />}
       {showStatusLoading && <GameStatusLoading />}
 
