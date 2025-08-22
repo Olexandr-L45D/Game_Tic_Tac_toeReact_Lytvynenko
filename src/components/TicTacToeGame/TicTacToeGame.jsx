@@ -252,169 +252,12 @@ const TicTacToeGame = ({ settings, onEvent }) => {
     }
   };
 
-  //Основна ФУНКЦІЯ = логіка та анімаціїї+звуки в ході Всієї гри при кліках на клітини поля гри
-
-  //   const handleClick = i => {
-  //     if (board[i] || winner || isVisible || isAnimating) return;
-  //     // Створюємо копію ігрового поля
-  //     const next = [...board];
-  //     next[i] = current;
-  //     const result = checkWin(next);
-  //     setBoard(next);
-  //     // Відтворення звуку кліку
-  //     if (clickSoundRef.current) {
-  //       clickSoundRef.current.currentTime = 0;
-  //       clickSoundRef.current.play().catch(() => { });
-  //     }
-  //     // Якщо немає переможця — міняємо хід і виходимо
-  //     if (!result) {
-  //       // setCurrent(current === "X" ? "O" : "X");
-  //       // return;
-  //       setCurrent("O");
-  //       // [NEW] Через 1с комп'ютер робить випадковий хід у ВІЛЬНУ клітину
-  //       setTimeout(() => {
-  //         // страховка: якщо за цей час з’явився переможець — нічого не робимо
-  //         if (winner) return;
-
-  //         // [NEW] знаходимо вільні клітини на основі СВІЖОГО снапшота next (ходу X)
-  //         const free = next
-  //           .map((v, idx) => (v ? null : idx))
-  //           .filter((idx) => idx !== null);
-
-  //         if (free.length === 0) return; // більше ходити нікуди
-
-  //         const j = free[Math.floor(Math.random() * free.length)];
-  //         const afterO = [...next];
-  //         afterO[j] = "O";
-  //         setBoard(afterO);
-
-  //         // звук кліку для комп'ютера
-  //         if (clickSoundRef.current) {
-  //           clickSoundRef.current.currentTime = 0;
-  //           clickSoundRef.current.play().catch(() => { });
-  //         }
-
-  //         const res2 = checkWin(afterO);
-
-  //         if (!res2) {
-  //           // [NEW] Ніхто не переміг — повертаємо хід гравцю X
-  //           setCurrent("X");
-  //         } else if (res2.player === "O") {
-  //           // [NEW] Комп'ютер виграв — використовуємо твою вже існуючу гілку
-  //           const a = new Audio(endDrowSound);
-  //           a.play().catch(() => { });
-  //           setTimeout(() => {
-  //             navigate("/result", {
-  //               state: { winner: "O", player1: "You", player2: "PLAYER 2" },
-  //             });
-  //           }, 1500);
-  //         } else if (res2.player === "Draw") {
-  //           // [NEW] Нічия
-  //           const a = new Audio(endDrowSound);
-  //           a.play().catch(() => { });
-  //           setTimeout(() => {
-  //             navigate("/result", {
-  //               state: { winner: "Draw", player1: "You", player2: "PLAYER 2" },
-  //             });
-  //           }, 1500);
-  //         }
-  //       }, 1000);
-  //     } else {
-  //       // Теоретично користувач не ходить за O, але залишимо для надійності
-  //       setCurrent("X");
-  //     }
-  //     return; // ВАЖЛИВО: нижче обробка перемоги X, її тут не чіпаємо
-  //   }
-  //   //END NEW Logik Game
-  //   // Маємо результат — зберігаємо гравця (але winner встановимо пізніше для X, після loading)
-  //   const player = result.player;
-  //   // Умова коли гравець "X" виграв це те саме що в стані = setWinner("X");
-  //   if (player === "X") {
-  //     // setWinner("X"); // Прибрав тут тому що заважав!
-  //     // Показуємо проміжну анімацію а саме смайлик з підсвіткою над героєм = Х зліва
-  //     setShowSmile(true);
-  //     setIsWinning(true); // Встановлюємо, що зараз період перемоги (підсвітка, анімації)
-  //     //Це нове! Зберігаємо індекси клітин, які виграли
-  //     setWinningCells(result.line || []); // result.line — це масив індексів з checkWin (виграшна комбінація з 3 х клітин)
-  //     // Запускаємо з затримкою в setTimeout(() анімацію зсуву вниз = setSlideDown(true);
-  //     setTimeout(() => {
-  //       setSlideDown(true);
-  //     }, 3000);
-  //     requestAnimationFrame(() => {
-  //       // невелика додаткова пауза (щоб анімація/пульс стартували)
-  //       setTimeout(() => {
-  //         // Прибираю анімацію зсуву вниз = setSlideDown(false);
-  //         setSlideDown(false);
-  //         setshowLoadingFirst(true);
-  //       }, 6000);
-  //     });
-  //     // Повідомлення + звук
-  //     if (winAudioRef.current) {
-  //       winAudioRef.current.currentTime = 0;
-  //       winAudioRef.current.play().catch(() => { });
-  //     } else {
-  //       // запасний варіант (якщо ref не ініціалізований)
-  //       const a = new Audio(winSound);
-  //       a.play().catch(() => { });
-  //     }
-  //     // Після 9 секунд ховаємо loading і встановлюємо winner = "X" (це викликає показ WinModal)
-  //     setTimeout(() => {
-  //       setIsWinning(false); // прибираю ефект підсвітки 3 х клітин
-  //       setWinningCells([]); // прибираю ефект підсвітки
-  //       setShowSmile(false);
-  //       setshowLoadingFirst(false);
-  //       setWinner("X");
-  //     }, 10000);
-  //   } else if (player === "O") {
-  //     // Противник виграв — робимо коротку паузу і переходимо на сторінку результату
-  //     // озвучка коли Противник виграв = "The opponent won. 😞"
-  //     const a = new Audio(endDrowSound);
-  //     a.play().catch(() => { });
-  //     // toast.success("The opponent won. 😞");
-  //     setTimeout(() => {
-  //       navigate("/result", {
-  //         state: { winner: "O", player1: "You", player2: "PLAYER 2" },
-  //       });
-  //     }, 1500);
-  //   } else if (player === "Draw") {
-  //     // Нічия — переходимо на сторінку результату (теж з невеликою затримкою)
-  //     // озвучка коли нічья = "You have a draw!"
-  //     const a = new Audio(endDrowSound);
-  //     a.play().catch(() => { });
-  //     // toast.success("You have a draw!");
-  //     setTimeout(() => {
-  //       navigate("/result", {
-  //         state: { winner: "Draw", player1: "You", player2: "PLAYER 2" },
-  //       });
-  //     }, 1500);
-  //   }
-  // };
-  //   // кінець ОСНОВНОЇ функції const handleClick
   useEffect(() => {
     const timer = setTimeout(() => {
       setAnimateIntro(false);
     }, 1500);
     return () => clearTimeout(timer);
   }, []);
-
-  // const lines = [
-  //   [0, 1, 2],
-  //   [3, 4, 5],
-  //   [6, 7, 8],
-  //   [0, 3, 6],
-  //   [1, 4, 7],
-  //   [2, 5, 8],
-  //   [0, 4, 8],
-  //   [2, 4, 6],
-  // ];
-
-  // const checkWin = b => {
-  //   for (let [a, b1, c] of lines) {
-  //     if (b[a] && b[a] === b[b1] && b[a] === b[c])
-  //       return { player: b[a], line: [a, b1, c] };
-  //   }
-  //   return b.every(Boolean) ? { player: "Draw", line: [] } : null;
-  // };
 
   const reset = () => {
     setBoard(Array(9).fill(null));
@@ -509,7 +352,6 @@ const TicTacToeGame = ({ settings, onEvent }) => {
 
             {winner === "X" && <WinModal onRestart={handleRestartGame} />}
 
-            {/* {showLoading && <WinModalMidle onRestart={() => {}} />} */}
             {showLoadingFirst && <WinModalFirst onRestart={() => {}} />}
           </section>
 
@@ -563,7 +405,3 @@ const TicTacToeGame = ({ settings, onEvent }) => {
 };
 
 export default TicTacToeGame;
-
-// setTimeout(() => {
-//   setWinner("X");
-// }, 9000);

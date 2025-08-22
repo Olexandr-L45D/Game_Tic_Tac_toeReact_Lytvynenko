@@ -1,13 +1,11 @@
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import css from "./HomePage.module.css";
 import startSound from "/src/assets/audio/successMixkit.mp3.wav";
 import { useState } from "react";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import LoaderBaground from "../../components/LoaderBaground/LoaderBaground";
 
 export default function HomePage() {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
 
   const handleGameStart = () => {
@@ -15,27 +13,12 @@ export default function HomePage() {
     audio.play().catch(e => console.warn("Autoplay blocked:", e));
     setLoading(true);
     setTimeout(() => {
-      toast.success(
-        "Нажаль термін демо перегляду 7 днів вичерпано! Звірніться до розробника!"
-      );
-      // navigate("/gamesetting");
-    }, 5000); // плавний перехід після 2с
+      navigate("/gamesetting");
+    }, 2000); // плавний перехід після 2с
   };
 
   return (
     <section className={css.container}>
-      <ToastContainer
-        position="top-right"
-        autoClose={6000} // 3 seconds
-        hideProgressBar={false}
-        newestOnTop={true}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-      />
-
       {loading ? (
         <LoaderBaground />
       ) : (
