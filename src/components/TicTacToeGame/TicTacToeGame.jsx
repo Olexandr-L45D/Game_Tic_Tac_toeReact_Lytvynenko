@@ -1,8 +1,8 @@
 import React, { useEffect, useState, useRef } from "react";
+import css from "./TicTacToeGame.module.css";
 import { FcBusinesswoman } from "react-icons/fc";
 import { FcBusinessman } from "react-icons/fc";
 import { FcPortraitMode } from "react-icons/fc";
-import css from "./TicTacToeGame.module.css";
 import Rose from "/assets/images/RoseYellow.png";
 import Princesse from "/assets/images/Princasse.png";
 import PrincesBlue from "/src/assets/emages/BlueGirl.png";

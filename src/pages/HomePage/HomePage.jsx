@@ -13,7 +13,7 @@ export default function HomePage() {
     audio.play().catch(e => console.warn("Autoplay blocked:", e));
     setLoading(true);
     setTimeout(() => {
-      navigate("/gamesetting");
+      navigate("/gamemain");
     }, 1500); // плавний перехід після 1.5 с
   };
 

@@ -8,10 +8,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background: url("/src/assets/emages/MaskDark.png") calc(50% - 20px)
-      center/cover no-repeat,
-    url("/src/assets/emages/MaskMountains.png") calc(50% - 20px) center/cover
-      no-repeat;
+  background-color: blue;
   box-sizing: border-box;
 }
 .container::after {

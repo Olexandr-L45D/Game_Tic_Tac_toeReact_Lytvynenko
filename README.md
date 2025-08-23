@@ -19,7 +19,7 @@ effects.
    player symbol, AI options).  
    Settings are stored in the application state.
 
-3. **TocTacToeGame/Game Board**
+3. **TetrisGame/Game Board**
 
    - Displays a 3x3 grid for the game.
    - Handles player turns, marking X = Your hero or O = Computer.
@@ -45,7 +45,7 @@ effects.
 
 ## ✨ Features
 
-- Classic TicTacToe gameplay with X and O.
+- Classic Tetris gameplay with X and O.
 - Configurable difficulty and optional AI opponent.
 - Smooth animations for moves and win/draw.
 - Audio feedback for player actions.

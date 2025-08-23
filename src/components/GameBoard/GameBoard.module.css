@@ -1,0 +1,25 @@
+/* GameBoard.module.css */
+.boardContainer {
+  width: 285px;
+  height: 300px;
+  margin: 2px;
+  padding: 2px;
+}
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(8, 32px);
+  grid-template-rows: repeat(8, 32px);
+  gap: 3px;
+  background-color: rgb(11, 11, 57); /* темне тло */
+  border-radius: 8px;
+}
+
+.cell {
+  width: 32px;
+  height: 32px;
+  border-radius: 4px;
+  background-color: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.08); /* малопомітна сітка */
+  transition: background-color 0.2s;
+}

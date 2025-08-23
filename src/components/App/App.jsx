@@ -4,8 +4,8 @@ import Loader from "../Loader/Loader";
 
 const HomePage = lazy(() => import("../../pages/HomePage/HomePage"));
 
-const GameSettingPage = lazy(() =>
-  import("../../pages/GameSettingPage/GameSettingPage")
+const GameMainPage = lazy(() =>
+  import("../../pages/GameMainPage/GameMainPage")
 );
 const GameResultPage = lazy(() =>
   import("../../pages/GameResultPage/GameResultPage")
@@ -20,7 +20,7 @@ export default function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
 
-          <Route path="/gamesetting" element={<GameSettingPage />} />
+          <Route path="/gamemain" element={<GameMainPage />} />
           <Route path="/result" element={<GameResultPage />} />
 
           <Route path="*" element={<NotFoundPage />} />
