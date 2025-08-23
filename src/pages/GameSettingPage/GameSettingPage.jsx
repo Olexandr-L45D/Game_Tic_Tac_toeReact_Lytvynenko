@@ -1,16 +1,17 @@
 import { useState } from "react";
 import css from "./GameSettingPage.module.css";
-import TicTacToeGame from "../../components/TicTacToeGame/TicTacToeGame";
+// import TicTacToeGame from "../../components/TicTacToeGame/TicTacToeGame";
 import GameSettingsModal from "../../components/GameSettingsModal/GameSettingsModal";
-import GameStatusLoading from "../../components/GameStatusLoading/GameStatusLoading";
-import LoadingScreen from "../../components/LoadingScreen/LoadingScreen";
+// import GameStatusLoading from "../../components/GameStatusLoading/GameStatusLoading";
+// import LoadingScreen from "../../components/LoadingScreen/LoadingScreen";
 import Loader from "../../components/Loader/Loader";
+import TetrisGame from "../../components/TetrisGame/TetrisGame";
 
 const GameSettingPage = () => {
   const [settings, setSettings] = useState(null);
   const [showModal, setShowModal] = useState(true);
-  const [showLoading, setShowLoading] = useState(false);
-  const [showStatusLoading, setShowStatusLoading] = useState(false);
+  // const [showLoading, setShowLoading] = useState(false);
+  // const [showStatusLoading, setShowStatusLoading] = useState(false);
   const [startGame, setStartGame] = useState(false);
   const [showGlobalLoader, setShowGlobalLoader] = useState(false); // глобальний Loader
 
@@ -18,20 +19,19 @@ const GameSettingPage = () => {
   const handleStart = data => {
     setShowModal(false);
     setShowGlobalLoader(true); // глобальний Loader
-    setShowLoading(true); // Показати перший лоадер
+    // setShowLoading(true); // Показати перший лоадер
 
     setTimeout(() => {
       setShowGlobalLoader(false);
-      setShowLoading(false); // Сховати перший лоадер
+      // setShowLoading(false); // Сховати перший лоадер
 
       // Показати GameStatusLoading після короткої паузи (щоб не мерехтіло)
       setTimeout(() => {
-        setShowStatusLoading(true);
+        // setShowStatusLoading(true);
 
         // Дати гравцеві побачити статус і потім старт гри
         setTimeout(() => {
-         
-          setShowStatusLoading(true);
+          // setShowStatusLoading(true);
           setSettings(data);
           setStartGame(true);
         }, 1000); // Пауза перед стартом гри
@@ -41,9 +41,8 @@ const GameSettingPage = () => {
 
   return (
     <section className={css.container}>
-      
-      {showLoading && <LoadingScreen />}
-      {showStatusLoading && <GameStatusLoading />}
+      {/* {showLoading && <LoadingScreen />} */}
+      {/* {showStatusLoading && <GameStatusLoading />} */}
 
       {showModal && (
         <GameSettingsModal
@@ -55,7 +54,7 @@ const GameSettingPage = () => {
       {showGlobalLoader && <Loader />}
 
       {startGame && settings && (
-        <TicTacToeGame
+        <TetrisGame
           name="Olexandr"
           age={settings.age}
           language={settings.language}

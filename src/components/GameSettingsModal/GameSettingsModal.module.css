@@ -3,23 +3,26 @@
   position: fixed;
   top: 0;
   left: 0;
-  width: 820px;
-  height: 370px;
+  width: 320px;
+  height: 780px;
   display: flex;
-  flex-direction: row;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
   z-index: 9999; /* максимально високий, щоб точно було зверху */
-  padding: 16px;
+  padding: 20px;
+  margin: 10px;
   box-sizing: border-box;
 }
 .blokTitle {
+  margin-top: 10px;
   margin: 0px;
   padding: 0px;
   width: 100%;
-  height: 350px;
+  height: 200px;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: top;
   margin-left: 10px;
 }
 .Alltitle {
@@ -80,15 +83,16 @@
   position: fixed;
   top: 0;
   left: 0;
-  width: 852px;
-  height: 395px;
+  width: 320px;
+  height: 780px;
   background: url("/src/assets/emages/BacgrBlue.png") center/cover no-repeat;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  /* justify-content: center;
+  align-items: center; */
   z-index: 9999; /* максимально високий, щоб точно було зверху */
   padding: 16px;
   box-sizing: border-box;
+  /* align-items: center; */
 }
 .modalOverlay::after {
   content: "";
@@ -103,13 +107,14 @@
 
 .modalContent {
   position: fixed;
-  top: 20px;
+  top: 250px;
   background: white;
-  padding: 20px;
+  padding: 25px;
   padding-top: 0px;
   border-radius: 15px;
-  max-width: 220px;
-  max-height: 80vh;
+  max-width: 280px;
+  height: 350px;
+  /* max-height: 80vh; */
   overflow-y: auto;
   box-sizing: border-box;
   background: url("/src/assets/emages/FonImageSelebr.png");
@@ -167,4 +172,13 @@
 }
 .buttonEnd:hover {
   background-color: #ffc267;
+}
+.titleSet {
+  margin-top: 20px;
+  font-weight: 1000;
+  font-size: 20px;
+  /* line-height: 1; */
+  /* justify-content: start; */
+  color: black;
+  padding: 3px;
 }

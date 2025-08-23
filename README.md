@@ -1,8 +1,8 @@
 # React + Vite
 
-# TicTacToe
+# game-tetris
 
-TicTacToe is a classic **X and O game** built with **React + Vite**.  
+game-tetris is a classic **X and O game** built with **React + Vite**.  
 The application features smooth animations, turn management, and engaging visual
 effects.
 
